@@ -63,6 +63,35 @@ def sign_up():
     return render_template('signup.html')
 
 
+# recipe pages with function to find the recipes #
+
+
+@app.route('/home')
+def home():
+    return render_template("home.html")
+
+
+@app.route('/breakfast')
+def breakfast():
+    return render_template(
+        "breakfast.html", breakfasts=mongo.db.breakfasts.find())
+
+
+@app.route('/lunch')
+def lunch():
+    return render_template("lunch.html", lunch=mongo.db.lunch.find())
+
+
+@app.route('/dinner')
+def dinner():
+    return render_template("dinner.html", dinner=mongo.db.dinner.find())
+
+
+@app.route('/dessert')
+def dessert():
+    return render_template("dessert.html", desserts=mongo.db.desserts.find())
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>DaddiesRecipes</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+</head>
+
+<body>
+	<!-------dropdown menu for larger devices as jquery wouldnt recognise the two-->
+	<ul id="dropdown1" class="dropdown-content">
+		<li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('lunch')}}">Lunch</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('dinner')}}">Dinner</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
+	</ul>
+
+	<ul id="dropdown2" class="dropdown-content">
+		<li><a href="{{url_for('add_breakfast')}}">Breakfast</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('add_lunch')}}">Lunch</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('add_dinner')}}">Dinner</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('add_dessert')}}">Dessert</a></li>
+	</ul>
+	<!------dropdown menu for smaller devices-->
+	<ul id="mobiledropdown" class="dropdown-content">
+		<li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('lunch')}}">Lunch</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('dinner')}}">Dinner</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
+	</ul>
+	<!-----Add a recipe drop down-->
+	<ul id="mobiledropdown2" class="dropdown-content">
+		<li><a href="{{url_for('add_breakfast')}}">Breakfast</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('add_lunch')}}">Lunch</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('add_dinner')}}">Dinner</a></li>
+		<li class="divider"></li>
+		<li><a href="{{url_for('add_dessert')}}">Dessert</a></li>
+	</ul>
+	<nav>
+		<!------navbar with the triggers for drop down-->
+		<div class="nav-wrapper">
+			<a href="{{url_for('home')}}" class="brand-logo">DaddiesRecipes</a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li><a class="dropdown" href="#!" data-target="dropdown1">Find a
+						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a class="dropdown" href="#!" data-target="dropdown2">Add a
+							Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+					<li><a href="{{url_for('products')}}">Products</a></li>
+				</ul>
+		</div>
+	</nav>
+	<!-------sidenavbar element from materialize-->
+	<ul class="sidenav" id="mobile-demo">
+		<li><a class="dropdown" href="#!" data-target="mobiledropdown">Find a
+				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+		<li><a class="dropdown" href="#!" data-target="mobiledropdown2">Add a
+				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+		<li><a href="{{url_for('products')}}">Products</a></li>
+	</ul>
+
+	{% block content %}
+
+
+	{% endblock %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+    $('.sidenav').sidenav();
+    $(".dropdown").dropdown();
+     $('.parallax').parallax();
+      $('.collapsible').collapsible();
+      $('select').formSelect();
+  });
+	</script>
+</body>
+
+</html>
