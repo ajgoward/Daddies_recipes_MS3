@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap");
+
+/* base.html styling */
+.nav-wrapper {
+  background-color: #582b0c;
+  font-family: "Pacifico", cursive;
+}
+
+.main-heading {
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  padding-top: 20px;
+  font-size: 50px;
+}
+
+/* general styling */
+.welcome-text {
+  font-family: "Montserrat", cursive;
+  font-size: 30px;
+}
+
+.black-text {
+  font-size: 30px;
+  font-family: "Montserrat", cursive;
+}
+
+@media only screen and (max-width: 768px) {
+  .black-text {
+    font-size: initial;
+  }
+}
+
+.recipe_header {
+  font-size: 19px;
+  font-family: "Montserrat", cursive;
+  padding-left: 30px;
+}
+
+.signupsignin {
+  margin-top: 40px;
+}
+
+.signup-buttons {
+  text-align: center;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Daddies Recipes</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+</head>
+
+<body>
+	<nav>
+
+		<div class="nav-wrapper">
+			<a href="{{url_for('login_page')}}" class="brand-logo">DaddiesRecipes</a>
+			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="{{url_for('sign_up')}}">Sign-Up</a></li>
+			</ul>
+		</div>
+	</nav>
+<!------recieved the flash method from https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/-->
+	<ul class="sidenav" id="mobile-demo">
+		<li><a href="{{url_for('sign_up')}}">Sign_up</a></li>
+	</ul>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<div class="flashes row">
+		{% for message in messages %}
+		<h1 class="main-heading">{{ message }}</h1>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% endwith %}
+	{% block content %}
+
+
+	{% endblock %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+	</script>
+</body>
+
+</html>

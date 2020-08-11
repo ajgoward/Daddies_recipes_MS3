@@ -1,25 +1,69 @@
-import pymongo
 import os
+import bcrypt
+from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
+if os.path.exists("env.py"):
+    import env
 
-MONGODB_URI = os.getenv("MONGO_URI")
-DBS_NAME = "daddies_recipes"
-COLLECTION_NAME = "lunch"
-
-
-def mongo_connect(url):
-    try:
-        conn = pymongo.MongoClient(url)
-        print("Mongo is connected!")
-        return conn
-    except pymongo.errors.ConnectionFailure as e:
-        print("Could not connect to MongoDB: %s") % e
+app = Flask(__name__)
 
 
-conn = mongo_connect(MONGODB_URI)
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
 
-coll = conn[DBS_NAME][COLLECTION_NAME]
+mongo = PyMongo(app)
 
-documents = coll.find()
 
-for doc in documents:
-    print(doc)
+# home page
+# I recievd the login functionality from a youtube
+# tutorial you can fiind it here
+# https://www.youtube.com/watch?v=vVx1737auSE#
+
+
+@app.route('/')
+@app.route('/login_page')
+def login_page():
+    return render_template("index.html")
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    users = mongo.db.users
+    login_user = users.find_one({'name': request.form['username']})
+
+    if login_user:
+        if bcrypt.hashpw(
+            request.form['password'].encode(
+                'utf-8'), login_user['password']) == login_user['password']:
+            session['username'] = request.form['username']
+            return redirect(url_for('home'))
+
+    flash('invalid login details')
+    return render_template('index.html')
+
+
+@app.route('/sign_up', methods=['POST', 'GET'])
+def sign_up():
+    if request.method == 'POST':
+        users = mongo.db.users
+        exsiting_user = users.find_one({'name': request.form['username']})
+
+        if exsiting_user is None:
+            hashpass = bcrypt.hashpw(
+                request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert(
+                {'name': request.form['username'], 'password': hashpass})
+            session['username'] = request.form['username']
+            return redirect(url_for('login_page'))
+
+        flash('That username already exists!')
+
+    return render_template('signup.html')
+
+
+if __name__ == '__main__':
+    app.run(host=os.environ.get("IP"),
+            port=int(os.environ.get("PORT")),
+            debug=True)
