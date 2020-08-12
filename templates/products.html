@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-------Header using parallax found on materiallize-->
+<div class="parallax-container">
+	<div class="parallax"><img src="static/images/family.jpg" alt="family-meal"></div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col s12">
+				<h1 class="main-heading">Our Favourite Products</h1>
+			</div>
+		</div>
+		<!--- another useful card system from materialize that i have changed to match the feel of the website
+        forgive the img src but due to laptop being old i can no longer store images-->
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div>
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<a href="https://www.nisbets.co.uk/vogue-non-stick-aluminium-frying-pan-240mm/s342"
+							target="_blank">
+							<img src=" https://images.unsplash.com/photo-1585166443752-f2bab062be82?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="frying pan" class="circle responsive-img">
+						</a>
+					</div>
+					<div class="col s10">
+						<span class="black-text">
+                Vogue Non Stick Teflon Aluminium Frying Pan 240mm
+ </span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div class="">
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<a href="https://www.nisbets.co.uk/nisbets-essentials-knife-block-and-knives-set/da083"
+							target="_blank">
+							<img src="https://images.unsplash.com/photo-1573465895933-b1e960ecad7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="knives" class="circle responsive-img">
+					</a>
+					</div>
+					<div class="col s10">
+						<span class="black-text">
+                Essentials Knife Block and Knives Set
+              </span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m8 offset-m2 l6 offset-l3">
+			<div>
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<a href="https://www.nisbets.co.uk/vogue-tri-wall-pan-set-of-4-pans/s888" target="_blank">
+							<img src="https://media.nisbets.com/asset/core/prodimage/largezoom/y320_group-shot.jpg" alt="pans" class="circle responsive-img">
+					</a>
+					</div>
+					<div class="col s10">
+						<span class="black-text">
+                Vogue Tri Wall Pan Set of 4 Pans
+              </span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div>
+				<div class="row valign-wrapper">
+					<div class="col s2">
+						<a href="https://www.nisbets.co.uk/vogue-rectangular-wooden-chopping-board-large/c460"
+							target="_blank">
+							<img src="https://images.unsplash.com/photo-1506470282729-2d5d8433e9b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="chopping board" class="circle responsive-img">
+						</a>
+					</div>
+					<div class="col s10">
+						<span class="black-text">
+                Vogue Rectangular Wooden Chopping Board Large
+              </span>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}

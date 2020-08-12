@@ -257,6 +257,14 @@ def delete_dessert(dessert_id):
     return redirect(url_for('dessert'))
 
 
+# product page #
+
+
+@app.route('/products')
+def products():
+    return render_template("products.html")
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
