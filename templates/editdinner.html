@@ -10,6 +10,7 @@
 	<div class="container">
 		<!-------call to the function that adds once the submit button is clicked-->
 		<form class="col s12" action="{{ url_for('update_dinners', dinners_id=dinners._id) }}" method="POST">
+{% extends 'form.html' %}
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">http</i>

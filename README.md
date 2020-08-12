@@ -1,8 +1,13 @@
 # Daddies Recipes 
 
+![multi-device-image](static/images/multi.png)
 
 
+# Important information
 
+I made this app in another repo but i made the big mistake on what a developer can do and i commited my API key and SECRET key so to fix this i made a new REPO 
+
+## About
 This is a website that allows users to:
 
 * See Recipes
@@ -95,7 +100,7 @@ The things that are marking this app down are:
 
 I tested each user story as follows:
 *	Sign up to use the website – Go to the website, click sign up, redirected to sign up page enter chosen username and password, redirected to sign in to enter the chosen username and password 
- !video[sign-up](static/videos/signup.mp4)
+ 
 * Learn What the website is about- Sign in using username and password redirected to home about page        
 *	look for recipes in a clear format i.e. in clear sections breakfast, lunch, dinner, dessert – go to homepage, click the find a recipe section on navbar, dropdown appears with sections for breakfast, lunch, dinner 
 
