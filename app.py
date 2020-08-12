@@ -216,7 +216,46 @@ def delete_dinners(dinners_id):
     return redirect(url_for('dinner'))
 
 
-#
+# CRUD functionality for the Desserts collection #
+
+
+@app.route('/add_dessert')
+def add_dessert():
+    return render_template("adddessert.html")
+
+
+@app.route('/insert_dessert', methods=["POST"])
+def insert_dessert():
+    desserts = mongo.db.desserts
+    desserts.insert_one(request.form.to_dict())
+    return redirect(url_for('dessert'))
+
+
+@app.route('/edit_dessert/<dessert_id>')
+def edit_dessert(dessert_id):
+    the_desserts = mongo.db.desserts.find_one({"_id": ObjectId(dessert_id)})
+    return render_template('editdessert.html', dessert=the_desserts)
+
+
+@app.route('/update_dessert/<dessert_id>', methods=["POST"])
+def update_dessert(dessert_id):
+    desserts = mongo.db.desserts
+    desserts.update({'_id': ObjectId(dessert_id)},
+    {
+        'image': request.form.get('image'),
+        'recipe_name': request.form.get('recipe_name'),
+        'time_to_make': request.form.get('time_to_make'),
+        'ingredients': request.form.get('ingredients'),
+        'method': request.form.get('method')
+    })
+    return redirect(url_for('dessert'))
+
+
+@app.route('/delete_dessert/<dessert_id>')
+def delete_dessert(dessert_id):
+    mongo.db.desserts.remove({'_id': ObjectId(dessert_id)})
+    return redirect(url_for('dessert'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
