@@ -175,6 +175,47 @@ def delete_lun(lun_id):
     return redirect(url_for('lunch'))
 
 
+# CRUD functionality for the Dinner collection #
+
+
+@app.route('/add_dinner')
+def add_dinner():
+    return render_template("adddinner.html")
+
+
+@app.route('/insert_dinner', methods=["POST"])
+def insert_dinner():
+    dinner = mongo.db.dinner
+    dinner.insert_one(request.form.to_dict())
+    return redirect(url_for('dinner'))
+
+
+@app.route('/edit_dinners/<dinners_id>')
+def edit_dinners(dinners_id):
+    the_dinner = mongo.db.dinner.find_one({"_id": ObjectId(dinners_id)})
+    return render_template('editdinner.html', dinners=the_dinner)
+
+
+@app.route('/update_dinners/<dinners_id>', methods=["POST"])
+def update_dinners(dinners_id):
+    dinner = mongo.db.dinner
+    dinner.update({'_id': ObjectId(dinners_id)},
+    {
+        'image': request.form.get('image'),
+        'recipe_name': request.form.get('recipe_name'),
+        'time_to_make': request.form.get('time_to_make'),
+        'ingredients': request.form.get('ingredients'),
+        'method': request.form.get('method')
+    })
+    return redirect(url_for('dinner'))
+
+
+@app.route('/delete_dinners/<dinners_id>')
+def delete_dinners(dinners_id):
+    mongo.db.dinner.remove({'_id': ObjectId(dinners_id)})
+    return redirect(url_for('dinner'))
+
+
 #
 
 if __name__ == '__main__':
