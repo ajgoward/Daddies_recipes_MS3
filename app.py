@@ -134,6 +134,49 @@ def delete_breakfast(breakfast_id):
     return redirect(url_for('breakfast'))
 
 
+# CRUD functionality for the Lunch collection #
+
+
+@app.route('/add_lunch')
+def add_lunch():
+    return render_template("addlunch.html")
+
+
+@app.route('/insert_lunch', methods=["POST"])
+def insert_lunch():
+    lunch = mongo.db.lunch
+    lunch.insert_one(request.form.to_dict())
+    return redirect(url_for('lunch'))
+
+
+@app.route('/edit_lun/<lun_id>')
+def edit_lun(lun_id):
+    the_lunch = mongo.db.lunch.find_one({"_id": ObjectId(lun_id)})
+    return render_template('editlunch.html', lun=the_lunch)
+
+
+@app.route('/update_lun/<lun_id>', methods=["POST"])
+def update_lun(lun_id):
+    lun = mongo.db.lunch
+    lun.update({'_id': ObjectId(lun_id)},
+    {
+        'image': request.form.get('image'),
+        'recipe_name': request.form.get('recipe_name'),
+        'time_to_make': request.form.get('time_to_make'),
+        'ingredients': request.form.get('ingredients'),
+        'method': request.form.get('method')
+    })
+    return redirect(url_for('lunch'))
+
+
+@app.route('/delete_lun/<lun_id>')
+def delete_lun(lun_id):
+    mongo.db.lunch.remove({'_id': ObjectId(lun_id)})
+    return redirect(url_for('lunch'))
+
+
+#
+
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
