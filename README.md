@@ -2,8 +2,9 @@
 
 ![multi-device-image](static/images/multi.png)
 
+Please find the application here: [https://daddiesrecipes.herokuapp.com/sign_up]
 
-# Important information
+# important Information 
 
 I made this app in another repo but i made the big mistake on what a developer can do and i commited my API key and SECRET key so to fix this i made a new REPO 
 
