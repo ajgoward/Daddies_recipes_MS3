@@ -1,19 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% block content %}
 <!-------Header using parallax found on materiallize-->
 <div class="parallax-container">
-	<div class="parallax"><img src="static/images/Lunch.jpg" alt="Lunch"></div>
+	<div class="parallax"><img src="static/images/Dessert.jpg" alt="dessert"></div>
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col s12 ">
+			<div class="col s12">
 				<h1 class="main-heading">Please Feel Free To Add Your Family Favourites!</h1>
 			</div>
 		</div>
 		<!------The Add A Recipe form-->
 		<div class="container">
 			<!-------call to the function that adds once the submit button is clicked-->
-			<form class="col s12" action="{{ url_for('insert_lunch' )}}" method="POST">
+			<form class="col s12" action="{{ url_for('insert_dessert' )}}" method="POST">
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">http</i>

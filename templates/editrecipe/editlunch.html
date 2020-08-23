@@ -1,7 +1,5 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% block content %}
-
-
 <div class="container">
 	<div class="row">
 		<div class="col s12">
@@ -11,7 +9,7 @@
 	<!------The Add A Recipe form-->
 	<div class="container">
 		<!-------call to the function that adds once the submit button is clicked-->
-		<form class="col s12" action="{{ url_for('update_dessert', dessert_id=dessert._id) }}" method="POST">
+		<form class="col s12" action="{{ url_for('update_lun', lun_id=lun._id) }}" method="POST">
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">http</i>
@@ -52,5 +50,6 @@
 			</div>
 		</form>
 	</div>
+
 
 	{% endblock %}

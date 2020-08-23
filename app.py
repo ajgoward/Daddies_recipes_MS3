@@ -25,7 +25,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/login_page')
 def login_page():
-    return render_template("index.html")
+    return render_template("homepages/index.html")
 
 
 @app.route('/login', methods=['POST'])
@@ -41,7 +41,7 @@ def login():
             return redirect(url_for('home'))
 
     flash('invalid login details')
-    return render_template('index.html')
+    return render_template('homepages/index.html')
 
 
 @app.route('/sign_up', methods=['POST', 'GET'])
@@ -60,7 +60,7 @@ def sign_up():
 
         flash('That username already exists!')
 
-    return render_template('signup.html')
+    return render_template('homepages/signup.html')
 
 
 # recipe pages with function to find the recipes #
@@ -68,28 +68,28 @@ def sign_up():
 
 @app.route('/home')
 def home():
-    return render_template("home.html")
+    return render_template("homepages/home.html")
 
 
 @app.route('/breakfast')
 def breakfast():
     return render_template(
-        "breakfast.html", breakfasts=mongo.db.breakfasts.find())
+        "recipes/breakfast.html", breakfasts=mongo.db.breakfasts.find())
 
 
 @app.route('/lunch')
 def lunch():
-    return render_template("lunch.html", lunch=mongo.db.lunch.find())
+    return render_template("recipes/lunch.html", lunch=mongo.db.lunch.find())
 
 
 @app.route('/dinner')
 def dinner():
-    return render_template("dinner.html", dinner=mongo.db.dinner.find())
+    return render_template("recipes/dinner.html", dinner=mongo.db.dinner.find())
 
 
 @app.route('/dessert')
 def dessert():
-    return render_template("dessert.html", desserts=mongo.db.desserts.find())
+    return render_template("recipes/dessert.html", desserts=mongo.db.desserts.find())
 
 
 # CRUD functionality for the Breakfast collection #
@@ -97,7 +97,7 @@ def dessert():
 
 @app.route('/add_breakfast')
 def add_breakfast():
-    return render_template("addbreakfast.html")
+    return render_template("addrecipe/addbreakfast.html")
 
 
 @app.route('/insert_breakfast', methods=["POST"])
@@ -111,7 +111,7 @@ def insert_breakfast():
 def edit_breakfast(breakfast_id):
     the_breakfast = mongo.db.breakfasts.find_one({
         "_id": ObjectId(breakfast_id)})
-    return render_template('editbreakfast.html', breakfast=the_breakfast)
+    return render_template('editrecipe/editbreakfast.html', breakfast=the_breakfast)
 
 
 @app.route('/update_breakfast/<breakfast_id>', methods=["POST"])
@@ -139,7 +139,7 @@ def delete_breakfast(breakfast_id):
 
 @app.route('/add_lunch')
 def add_lunch():
-    return render_template("addlunch.html")
+    return render_template("addrecipe/addlunch.html")
 
 
 @app.route('/insert_lunch', methods=["POST"])
@@ -152,7 +152,7 @@ def insert_lunch():
 @app.route('/edit_lun/<lun_id>')
 def edit_lun(lun_id):
     the_lunch = mongo.db.lunch.find_one({"_id": ObjectId(lun_id)})
-    return render_template('editlunch.html', lun=the_lunch)
+    return render_template('editrecipe/editlunch.html', lun=the_lunch)
 
 
 @app.route('/update_lun/<lun_id>', methods=["POST"])
@@ -180,7 +180,7 @@ def delete_lun(lun_id):
 
 @app.route('/add_dinner')
 def add_dinner():
-    return render_template("adddinner.html")
+    return render_template("addrecipe/adddinner.html")
 
 
 @app.route('/insert_dinner', methods=["POST"])
@@ -193,7 +193,7 @@ def insert_dinner():
 @app.route('/edit_dinners/<dinners_id>')
 def edit_dinners(dinners_id):
     the_dinner = mongo.db.dinner.find_one({"_id": ObjectId(dinners_id)})
-    return render_template('editdinner.html', dinners=the_dinner)
+    return render_template('editrecipe/editdinner.html', dinners=the_dinner)
 
 
 @app.route('/update_dinners/<dinners_id>', methods=["POST"])
@@ -221,7 +221,7 @@ def delete_dinners(dinners_id):
 
 @app.route('/add_dessert')
 def add_dessert():
-    return render_template("adddessert.html")
+    return render_template("addrecipe/adddessert.html")
 
 
 @app.route('/insert_dessert', methods=["POST"])
@@ -234,7 +234,7 @@ def insert_dessert():
 @app.route('/edit_dessert/<dessert_id>')
 def edit_dessert(dessert_id):
     the_desserts = mongo.db.desserts.find_one({"_id": ObjectId(dessert_id)})
-    return render_template('editdessert.html', dessert=the_desserts)
+    return render_template('editrecipe/editdessert.html', dessert=the_desserts)
 
 
 @app.route('/update_dessert/<dessert_id>', methods=["POST"])
