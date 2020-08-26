@@ -23,6 +23,11 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+@app.route('/home')
+def home():
+    return render_template("homepages/home.html")
+
+
 @app.route('/login_page')
 def login_page():
     return render_template("homepages/index.html")
@@ -38,7 +43,7 @@ def login():
             request.form['password'].encode(
                 'utf-8'), login_user['password']) == login_user['password']:
             session['username'] = request.form['username']
-            return redirect(url_for('home'))
+            return render_template('homepages/profile.html')
 
     flash('invalid login details')
     return render_template('homepages/index.html')
@@ -64,11 +69,6 @@ def sign_up():
 
 
 # recipe pages with function to find the recipes #
-
-
-@app.route('/home')
-def home():
-    return render_template("homepages/home.html")
 
 
 @app.route('/breakfast')

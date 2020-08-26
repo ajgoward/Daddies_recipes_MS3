@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="parallax-container">
+	<div class="parallax"><img src="static/images/family.jpg" alt="family-meal"></div>
+	</div>
+   {% if 'username' in session %}
+	<h1 class="main-heading">Welcome {{ session['username'] }}!</h1>
+	{% endif %}
+
+	{% endblock %}

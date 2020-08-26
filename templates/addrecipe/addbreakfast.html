@@ -5,6 +5,15 @@
 	<div class="parallax"><img src="static/images/Breakfast.jpg" alt="breakfast"></div>
 	</div>
 	<div class="container">
+    {% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<div class="flashes row">
+		{% for message in messages %}
+		<h1 class="main-heading">{{ message }}</h1>
+		{% endfor %}
+	</div>
+	{% endif %}
+	{% endwith %}
 		<div class="row">
 			<div class="col s12">
 				<h1 class="main-heading">Please Feel Free To Add Your Family Favourites!</h1>

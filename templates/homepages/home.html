@@ -1,13 +1,9 @@
-{% extends 'base/base.html' %}
+{% extends 'base/loginbase.html' %}
 {% block content %}
-<!-------Header using parallax found on materiallize-->
-<div class="parallax-container">
-	<div class="parallax"><img src="static/images/family.jpg" alt="family-meal"></div>
-	</div>
-	{% if 'username' in session %}
-	<h1 class="main-heading">Welcome {{ session['username'] }}!</h1>
-	{% endif %}
 
+	
+	<h1 class="main-heading">Welcome!</h1>
+	
 	<div class="container">
 		<div class="row">
 
@@ -24,7 +20,7 @@
 			<div class="">
 				<div class="row valign-wrapper">
 					<div class="col s6">
-						<a href="{{url_for('breakfast')}}"><img src="static/images/Breakfast.jpg" alt="Breakfast" class=" responsive-img"></a>
+						<img src="static/images/Breakfast.jpg" alt="Breakfast" class=" responsive-img">
 					</div>
 					<div class="col s6">
 						<span class="black-text">
@@ -39,7 +35,7 @@
 			<div class="">
 				<div class="row valign-wrapper">
 					<div class="col s6">
-						<a href="{{url_for('lunch')}}"><img src="static/images/Lunch.jpg" alt="lunch" class=" responsive-img"></a>
+						<img src="static/images/Lunch.jpg" alt="lunch" class=" responsive-img">
 					</div>
 					<div class="col s6">
 						<span class="black-text">
@@ -54,7 +50,7 @@
 			<div class="">
 				<div class="row valign-wrapper">
 					<div class="col s6">
-						<a href="{{url_for('dinner')}}"><img src="static/images/Roast.jpg" alt="Dinner" class=" responsive-img"></a>
+						<img src="static/images/Roast.jpg" alt="Dinner" class=" responsive-img">
 					</div>
 					<div class="col s6">
 						<span class="black-text">
@@ -69,7 +65,7 @@
 			<div class="">
 				<div class="row valign-wrapper">
 					<div class="col s6">
-						<a href="{{url_for('dessert')}}"><img src="static/images/Dessert.jpg" alt="dessert" class=" responsive-img"></a>
+					<img src="static/images/Dessert.jpg" alt="dessert" class=" responsive-img">
 					</div>
 					<div class="col s6">
 						<span class="black-text">
