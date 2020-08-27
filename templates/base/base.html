@@ -12,7 +12,7 @@
 
 <body>
 	<!-------dropdown menu for larger devices as jquery wouldnt recognise the two-->
-	<ul id="dropdown1" class="dropdown-content">
+	<ul id="dropdown" class="dropdown-content">
 		<li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
 		<li class="divider"></li>
 		<li><a href="{{url_for('lunch')}}">Lunch</a></li>
@@ -22,15 +22,7 @@
 		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
 	</ul>
 
-	<ul id="dropdown2" class="dropdown-content">
-		<li><a href="{{url_for('add_breakfast')}}">Breakfast</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('add_lunch')}}">Lunch</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('add_dinner')}}">Dinner</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('add_dessert')}}">Dessert</a></li>
-	</ul>
+	
 	<!------dropdown menu for smaller devices-->
 	<ul id="mobiledropdown" class="dropdown-content">
 		<li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
@@ -42,27 +34,17 @@
 		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
 	</ul>
 	<!-----Add a recipe drop down-->
-	<ul id="mobiledropdown2" class="dropdown-content">
-		<li><a href="{{url_for('add_breakfast')}}">Breakfast</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('add_lunch')}}">Lunch</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('add_dinner')}}">Dinner</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('add_dessert')}}">Dessert</a></li>
-	</ul>
+	
 	<nav>
 		<!------navbar with the triggers for drop down-->
 		<div class="nav-wrapper">
-			<a href="{{url_for('home')}}" class="brand-logo">DaddiesRecipes</a>
+			<a href="{{url_for('profile')}}" class="brand-logo">DaddiesRecipes</a>
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
-				<li><a class="dropdown" href="#!" data-target="dropdown1">Find a
+				<li><a class="dropdown"  data-target="dropdown">Find a
 						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-				<ul class="right hide-on-med-and-down">
-					<li><a class="dropdown" href="#!" data-target="dropdown2">Add a
-							Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><a href="{{url_for('add_recipe')}}">Breakfast</a></li>
 					<li><a href="{{url_for('products')}}">Products</a></li>
 				</ul>
 		</div>
@@ -71,8 +53,7 @@
 	<ul class="sidenav" id="mobile-demo">
 		<li><a class="dropdown" href="#!" data-target="mobiledropdown">Find a
 				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
-		<li><a class="dropdown" href="#!" data-target="mobiledropdown2">Add a
-				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+		<li><a href="{{url_for('add_recipe')}}">Breakfast</a></li>
 		<li><a href="{{url_for('products')}}">Products</a></li>
 	</ul>
 

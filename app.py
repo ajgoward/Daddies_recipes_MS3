@@ -43,7 +43,7 @@ def login():
             request.form['password'].encode(
                 'utf-8'), login_user['password']) == login_user['password']:
             session['username'] = request.form['username']
-            return render_template('homepages/profile.html')
+            return redirect(url_for('profile'))
 
     flash('invalid login details')
     return render_template('homepages/index.html')
@@ -68,42 +68,46 @@ def sign_up():
     return render_template('homepages/signup.html')
 
 
+@app.route('/profile' )
+def profile():
+    return render_template("homepages/profile.html")
+
 # recipe pages with function to find the recipes #
 
 
 @app.route('/breakfast')
 def breakfast():
     return render_template(
-        "recipes/breakfast.html", breakfasts=mongo.db.breakfasts.find())
+        "recipes/breakfast.html", recipes=mongo.db.recipes.find({"type":"breakfast"}))
 
 
 @app.route('/lunch')
 def lunch():
-    return render_template("recipes/lunch.html", lunch=mongo.db.lunch.find())
+    return render_template("recipes/lunch.html", recipes=mongo.db.recipes.find({"type":"lunch"}))
 
 
 @app.route('/dinner')
 def dinner():
-    return render_template("recipes/dinner.html", dinner=mongo.db.dinner.find())
+    return render_template("recipes/dinner.html", recipes=mongo.db.recipes.find({"type":"dinner"}))
 
 
 @app.route('/dessert')
 def dessert():
-    return render_template("recipes/dessert.html", desserts=mongo.db.desserts.find())
+    return render_template("recipes/dessert.html", recipes=mongo.db.recipes.find({"type":"dessert"}))
 
 
 # CRUD functionality for the Breakfast collection #
 
 
-@app.route('/add_breakfast')
-def add_breakfast():
-    return render_template("addrecipe/addbreakfast.html")
+@app.route('/add_recipe')
+def add_recipe():
+    return render_template("recipes/addrecipe.html")
 
 
-@app.route('/insert_breakfast', methods=["POST"])
-def insert_breakfast():
-    breakfasts = mongo.db.breakfasts
-    breakfasts.insert_one(request.form.to_dict())
+@app.route('/insert_recipe', methods=["POST"])
+def insert_recipe():
+    recipes = mongo.db.recipes
+    recipes.insert_one(request.form.to_dict())
     return redirect(url_for('breakfast'))
 
 
@@ -137,16 +141,7 @@ def delete_breakfast(breakfast_id):
 # CRUD functionality for the Lunch collection #
 
 
-@app.route('/add_lunch')
-def add_lunch():
-    return render_template("addrecipe/addlunch.html")
 
-
-@app.route('/insert_lunch', methods=["POST"])
-def insert_lunch():
-    lunch = mongo.db.lunch
-    lunch.insert_one(request.form.to_dict())
-    return redirect(url_for('lunch'))
 
 
 @app.route('/edit_lun/<lun_id>')
@@ -178,16 +173,7 @@ def delete_lun(lun_id):
 # CRUD functionality for the Dinner collection #
 
 
-@app.route('/add_dinner')
-def add_dinner():
-    return render_template("addrecipe/adddinner.html")
 
-
-@app.route('/insert_dinner', methods=["POST"])
-def insert_dinner():
-    dinner = mongo.db.dinner
-    dinner.insert_one(request.form.to_dict())
-    return redirect(url_for('dinner'))
 
 
 @app.route('/edit_dinners/<dinners_id>')
@@ -219,16 +205,6 @@ def delete_dinners(dinners_id):
 # CRUD functionality for the Desserts collection #
 
 
-@app.route('/add_dessert')
-def add_dessert():
-    return render_template("addrecipe/adddessert.html")
-
-
-@app.route('/insert_dessert', methods=["POST"])
-def insert_dessert():
-    desserts = mongo.db.desserts
-    desserts.insert_one(request.form.to_dict())
-    return redirect(url_for('dessert'))
 
 
 @app.route('/edit_dessert/<dessert_id>')
