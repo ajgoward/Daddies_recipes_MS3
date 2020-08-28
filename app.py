@@ -111,17 +111,17 @@ def insert_recipe():
     return redirect(url_for('breakfast'))
 
 
-@app.route('/edit_breakfast/<breakfast_id>')
-def edit_breakfast(breakfast_id):
-    the_breakfast = mongo.db.breakfasts.find_one({
-        "_id": ObjectId(breakfast_id)})
-    return render_template('editrecipe/editbreakfast.html', breakfast=the_breakfast)
+@app.route('/edit_recipe/<recipe_id>')
+def edit_recipe(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({
+        "_id": ObjectId(recipe_id)})
+    return render_template('recipes/editrecipe.html', recipe=the_recipe)
 
 
-@app.route('/update_breakfast/<breakfast_id>', methods=["POST"])
-def update_breakfast(breakfast_id):
-    breakfasts = mongo.db.breakfasts
-    breakfasts.update({'_id': ObjectId(breakfast_id)},
+@app.route('/update_recipe/<recipe_id>', methods=["POST"])
+def update_recipe(recipe_id):
+    recipe = mongo.db.recipes
+    recipe.update({'_id': ObjectId(recipe_id)},
     {
         'image': request.form.get('image'),
         'recipe_name': request.form.get('recipe_name'),
@@ -132,108 +132,10 @@ def update_breakfast(breakfast_id):
     return redirect(url_for('breakfast'))
 
 
-@app.route('/delete_breakfast/<breakfast_id>')
-def delete_breakfast(breakfast_id):
-    mongo.db.breakfasts.remove({'_id': ObjectId(breakfast_id)})
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('breakfast'))
-
-
-# CRUD functionality for the Lunch collection #
-
-
-
-
-
-@app.route('/edit_lun/<lun_id>')
-def edit_lun(lun_id):
-    the_lunch = mongo.db.lunch.find_one({"_id": ObjectId(lun_id)})
-    return render_template('editrecipe/editlunch.html', lun=the_lunch)
-
-
-@app.route('/update_lun/<lun_id>', methods=["POST"])
-def update_lun(lun_id):
-    lun = mongo.db.lunch
-    lun.update({'_id': ObjectId(lun_id)},
-    {
-        'image': request.form.get('image'),
-        'recipe_name': request.form.get('recipe_name'),
-        'time_to_make': request.form.get('time_to_make'),
-        'ingredients': request.form.get('ingredients'),
-        'method': request.form.get('method')
-    })
-    return redirect(url_for('lunch'))
-
-
-@app.route('/delete_lun/<lun_id>')
-def delete_lun(lun_id):
-    mongo.db.lunch.remove({'_id': ObjectId(lun_id)})
-    return redirect(url_for('lunch'))
-
-
-# CRUD functionality for the Dinner collection #
-
-
-
-
-
-@app.route('/edit_dinners/<dinners_id>')
-def edit_dinners(dinners_id):
-    the_dinner = mongo.db.dinner.find_one({"_id": ObjectId(dinners_id)})
-    return render_template('editrecipe/editdinner.html', dinners=the_dinner)
-
-
-@app.route('/update_dinners/<dinners_id>', methods=["POST"])
-def update_dinners(dinners_id):
-    dinner = mongo.db.dinner
-    dinner.update({'_id': ObjectId(dinners_id)},
-    {
-        'image': request.form.get('image'),
-        'recipe_name': request.form.get('recipe_name'),
-        'time_to_make': request.form.get('time_to_make'),
-        'ingredients': request.form.get('ingredients'),
-        'method': request.form.get('method')
-    })
-    return redirect(url_for('dinner'))
-
-
-@app.route('/delete_dinners/<dinners_id>')
-def delete_dinners(dinners_id):
-    mongo.db.dinner.remove({'_id': ObjectId(dinners_id)})
-    return redirect(url_for('dinner'))
-
-
-# CRUD functionality for the Desserts collection #
-
-
-
-
-@app.route('/edit_dessert/<dessert_id>')
-def edit_dessert(dessert_id):
-    the_desserts = mongo.db.desserts.find_one({"_id": ObjectId(dessert_id)})
-    return render_template('editrecipe/editdessert.html', dessert=the_desserts)
-
-
-@app.route('/update_dessert/<dessert_id>', methods=["POST"])
-def update_dessert(dessert_id):
-    desserts = mongo.db.desserts
-    desserts.update({'_id': ObjectId(dessert_id)},
-    {
-        'image': request.form.get('image'),
-        'recipe_name': request.form.get('recipe_name'),
-        'time_to_make': request.form.get('time_to_make'),
-        'ingredients': request.form.get('ingredients'),
-        'method': request.form.get('method')
-    })
-    return redirect(url_for('dessert'))
-
-
-@app.route('/delete_dessert/<dessert_id>')
-def delete_dessert(dessert_id):
-    mongo.db.desserts.remove({'_id': ObjectId(dessert_id)})
-    return redirect(url_for('dessert'))
-
-
-# product page #
 
 
 @app.route('/products')
