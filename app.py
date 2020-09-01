@@ -108,7 +108,7 @@ def add_recipe():
 def insert_recipe():
     recipes = mongo.db.recipes
     recipes.insert_one(request.form.to_dict())
-    return redirect(url_for('breakfast'))
+    return redirect(url_for('profile'))
 
 
 @app.route('/edit_recipe/<recipe_id>')
@@ -123,19 +123,21 @@ def update_recipe(recipe_id):
     recipe = mongo.db.recipes
     recipe.update({'_id': ObjectId(recipe_id)},
     {
+        'type': request.form.get('type'),
         'image': request.form.get('image'),
         'recipe_name': request.form.get('recipe_name'),
         'time_to_make': request.form.get('time_to_make'),
         'ingredients': request.form.get('ingredients'),
-        'method': request.form.get('method')
+        'method': request.form.get('method'),
+        'posted_by':request.form.get('posted_by')
     })
-    return redirect(url_for('breakfast'))
+    return redirect(url_for('profile'))
 
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('breakfast'))
+        mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
+        return redirect(url_for('profile'))
 
 
 @app.route('/products')

@@ -2,7 +2,7 @@
 {% block content %}
 <!-------Header using parallax found on materiallize-->
 <div class="parallax-container">
-	<div class="parallax"><img src="static/images/Breakfast.jpg" alt="breakfast"></div>
+	<div class="parallax"><img src="static/images/family.jpg" alt="breakfast"></div>
 	</div>
 
 	<div class="row">
@@ -14,18 +14,17 @@
 	<div class="container">
 		<!-------call to the function that adds once the submit button is clicked-->
 		<form class="col s12" action="{{ url_for('insert_recipe' )}}" method="POST">
-			<div class="row">
-
-				<label for="type">Choose a categorie:</label>
-
-				<select name="type" id="type">
-  <option value="breakfast">Breakfast</option>
-  <option value="lunch">Lunch</option>
-  <option value="dinner">Dinner</option>
-  <option value="dessert">Dessert</option>
-</select>
-			</div>
-	</div>
+          <div class="input-field col s12">
+ 
+		 <select name="type" id="type">
+      <option value="" disabled selected>Choose your category</option>
+      <option  value="breakfast" >Breakfast</option>
+      <option value="lunch" name="type" >Lunch</option>
+      <option value="dinner" name="type" >Dinner</option>
+      <option value="dessert" name="type" >Dessert</option>
+    </select>
+    <label>Materialize Select</label>
+  </div>
 	<div class="row">
 		<div class="input-field col s12">
 			<i class="material-icons prefix">http</i>
@@ -59,13 +58,19 @@
 			<label for="icon_telephone">Method</label>
 		</div>
 	</div>
-	<div class="row">
+  <div class="row">
+       	 <div class="input-field col s6">
+          <input placeholder="Feel free to sign your work" id="posted_by" name="posted_by" type="text" class="validate">
+          <label for="posted_by">Posted By</label>
+        </div>
+	<div class=" col s6">
 		<button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe!
     <i class="material-icons right">add_box</i>
   </button>
 	</div>
+    </div>
 	</form>
 </div>
-
+</div>
 
 {% endblock %}

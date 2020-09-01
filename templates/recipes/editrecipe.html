@@ -12,6 +12,17 @@
 	<div class="container">
 		<!-------call to the function that adds once the submit button is clicked-->
 		<form class="col s12" action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST">
+			<div class="row input-box">
+
+				<label for="type">Choose a category:</label>
+
+				<select name="type" id="type">
+  <option value="breakfast">Breakfast</option>
+  <option value="lunch">Lunch</option>
+  <option value="dinner">Dinner</option>
+  <option value="dessert">Dessert</option>
+</select>
+			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">http</i>

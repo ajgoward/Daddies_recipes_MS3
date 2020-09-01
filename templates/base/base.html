@@ -44,7 +44,7 @@
 				<li><a class="dropdown"  data-target="dropdown">Find a
 						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
 				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <li><a href="{{url_for('add_recipe')}}">Breakfast</a></li>
+                            <li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
 					<li><a href="{{url_for('products')}}">Products</a></li>
 				</ul>
 		</div>
@@ -53,7 +53,7 @@
 	<ul class="sidenav" id="mobile-demo">
 		<li><a class="dropdown" href="#!" data-target="mobiledropdown">Find a
 				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
-		<li><a href="{{url_for('add_recipe')}}">Breakfast</a></li>
+		<li><a href="{{url_for('add_recipe')}}">Add Your Favourite</a></li>
 		<li><a href="{{url_for('products')}}">Products</a></li>
 	</ul>
 
@@ -71,6 +71,7 @@
      $('.parallax').parallax();
       $('.collapsible').collapsible();
       $('select').formSelect();
+    $('.modal').modal();
   });
 	</script>
 </body>
