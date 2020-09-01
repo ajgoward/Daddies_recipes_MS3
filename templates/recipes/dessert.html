@@ -2,7 +2,7 @@
 {% block content %}
 <!-------Header using parallax found on materiallize-->
 <div class="parallax-container">
-	<div class="parallax"><img src="static/images/Dessert.jpg" alt="Dessert"></div>
+	<div class="parallax"><img src="static/images/Dessert.jpg" alt="dessert"></div>
 	</div>
 	<div class="container">
 		<div class="row">
@@ -10,9 +10,9 @@
 				<h1 class="main-heading">Dessert</h1>
 			</div>
 		</div>
-     <!---------accordian for all the recipes and wiring up to the database collection for Desserts-->
+        <!---------accordian for all the recipes and wiring up to the database collection for breakfasts-->
 		<ul class="collapsible">
-			{% for dessert in desserts %}
+			{% for recipe in recipes %}
 			<li>
 				<div class="collapsible-header">
 					<div class="col s3">
@@ -35,20 +35,29 @@
 							</div>
 						</div>
 						
+					</div>
+					<div class="recipe_header col s9">
+						<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>
+						{{recipe.time_to_make}}
+					</div>
+				</div>
 				<div class="collapsible-body">
 					<div>
-						<img src="{{dessert.image}}" alt="image"  class="responsive-img circle">
+						<img src="{{recipe.image}}" alt="image"  class="responsive-img center materialboxed">
      </div>
 						<br>
-						<h3 class="headers">Ingredients</h3>
-						<p class="black-text"> {{dessert.ingredients}}</p>
+                        <h3 class="headers">Ingredients</h3>
+						<p class="black-text">{{recipe.ingredients}}</p>
 						<br>
 						<br>
 						<h3 class="headers">Method</h3>
-						<p class="black-text">{{dessert.method}}</p>
+						<p class="black-text">{{recipe.method}}</p>
+                        <br>
+						<br>
+						<h3 class="headers">Posted By</h3>
+						<p class="black-text">{{recipe.posted_by}}</p>
 					</div>
 			</li>
 			{% endfor %}
 		</ul>
-
 		{% endblock %}

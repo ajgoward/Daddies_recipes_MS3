@@ -70,7 +70,7 @@ def sign_up():
 
 @app.route('/profile' )
 def profile():
-    return render_template("homepages/profile.html")
+    return render_template("homepages/profile.html", recipes=mongo.db.recipes.find())
 
 # recipe pages with function to find the recipes #
 
