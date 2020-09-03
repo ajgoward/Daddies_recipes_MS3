@@ -2,7 +2,7 @@
 
 ![multi-device-image](static/images/multi.png)
 
-Please find the application here: [https://daddiesrecipes.herokuapp.com/sign_up]
+Please find the application here: http://daddiesrecipes.herokuapp.com/home
 
 # important Information 
 
