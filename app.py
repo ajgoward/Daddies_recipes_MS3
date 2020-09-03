@@ -68,7 +68,7 @@ def register():
 
         session["user"] = request.form.get("username").lower()
 
-    return render_template('homepages/home.html')
+    return render_template('homepages/signup.html')
 
 
 @app.route('/log_out')

@@ -148,7 +148,7 @@ I Deployed my app on Heroku
 
  6. type the command “pip3 freeze > requirements.txt” this will add a new2 file with all the packages to run your python app 
 
-7.  create a profile “echo web: python run.py > Profile” if your python file is called run.py
+7.  create a profile “echo web: python run.py > Procfile” if your python file is called run.py
 
 8. run the command “git remote add” and the app URL which can be found on the Heroku dashboard
 
