@@ -6,5 +6,5 @@ $(document).ready(function () {
     $('select').formSelect();
     $('.modal').modal();
     $('.materialboxed').materialbox();
-    $(".dropdown-trigger").dropdown();
+    $(".dropdown1").dropdown();
 });

@@ -41,6 +41,8 @@
 			<a href="{{url_for('home')}}" class="brand-logo">DaddiesRecipes</a>
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
+            <li><a class="dropdown" data-target="dropdown">Find a
+				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
 				{% if 'username' in session %}
 				<li><a href="{{url_for('profile')}}">Profile</a></li>
 				<li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
@@ -50,19 +52,13 @@
 				<li><a href="{{url_for('login_page')}}">Log in</a></li>
 				<li><a href="{{url_for('register')}}">Register</a></li>
                  <li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('lunch')}}">Lunch</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('dinner')}}">Dinner</a></li>
-		<li class="divider"></li>
-		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
 				{% endif %}
 			</ul>
 		</div>
 	</nav>
 	<!-------sidenavbar element from materialize-->
 	<ul class="sidenav" id="mobile-demo">
-    <li><a class="dropdown" data-target="mobiledropdown">Find a
+    <li><a class="dropdown1" data-target="mobiledropdown">Find a
 				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
 		{% if 'username' in session %}
 		<li><a href="{{url_for('profile')}}">Profile</a></li>
