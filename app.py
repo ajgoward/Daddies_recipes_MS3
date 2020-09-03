@@ -1,8 +1,10 @@
 import os
 import bcrypt
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import (
+    Flask, render_template, redirect, request, url_for, session, flash)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash
 if os.path.exists("env.py"):
     import env
 
@@ -49,28 +51,37 @@ def login():
     return render_template('homepages/index.html')
 
 
-@app.route('/sign_up', methods=['POST', 'GET'])
-def sign_up():
+@app.route('/register', methods=['POST', 'GET'])
+def register():
     if request.method == 'POST':
-        users = mongo.db.users
-        exsiting_user = users.find_one({'name': request.form['username']})
+        exsiting_user = mongo.db.users.find_one(
+            {'username': request.form.get['username'].lower()})
 
-        if exsiting_user is None:
-            hashpass = bcrypt.hashpw(
-                request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert(
-                {'name': request.form['username'], 'password': hashpass})
-            session['username'] = request.form['username']
-            return redirect(url_for('login_page'))
+        if exsiting_user:
+            flash('That username already exists!')
+            return redirect(url_for('register'))
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
 
-        flash('That username already exists!')
+        session["user"] = request.form.get("username").lower()
 
-    return render_template('homepages/signup.html')
+    return render_template('homepages/home.html')
 
 
-@app.route('/profile' )
+@app.route('/log_out')
+def log_out():
+    flash("log out successful")
+    session.pop("username")
+    return redirect(url_for('home'))
+
+
+@app.route('/profile')
 def profile():
-    return render_template("homepages/profile.html", recipes=mongo.db.recipes.find())
+    return render_template(
+        "homepages/profile.html", recipes=mongo.db.recipes.find())
 
 # recipe pages with function to find the recipes #
 
@@ -78,22 +89,28 @@ def profile():
 @app.route('/breakfast')
 def breakfast():
     return render_template(
-        "recipes/breakfast.html", recipes=mongo.db.recipes.find({"type":"breakfast"}))
+        "recipes/breakfast.html", recipes=mongo.db.recipes.find(
+            {"type": "breakfast"}))
 
 
 @app.route('/lunch')
 def lunch():
-    return render_template("recipes/lunch.html", recipes=mongo.db.recipes.find({"type":"lunch"}))
+    return render_template("recipes/lunch.html", recipes=mongo.db.recipes.find(
+        {"type": "lunch"}))
 
 
 @app.route('/dinner')
 def dinner():
-    return render_template("recipes/dinner.html", recipes=mongo.db.recipes.find({"type":"dinner"}))
+    return render_template(
+        "recipes/dinner.html", recipes=mongo.db.recipes.find(
+            {"type": "dinner"}))
 
 
 @app.route('/dessert')
 def dessert():
-    return render_template("recipes/dessert.html", recipes=mongo.db.recipes.find({"type":"dessert"}))
+    return render_template(
+        "recipes/dessert.html", recipes=mongo.db.recipes.find(
+            {"type": "dessert"}))
 
 
 # CRUD functionality for the Breakfast collection #
@@ -121,15 +138,14 @@ def edit_recipe(recipe_id):
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     recipe = mongo.db.recipes
-    recipe.update({'_id': ObjectId(recipe_id)},
-    {
+    recipe.update({'_id': ObjectId(recipe_id)}, {
         'type': request.form.get('type'),
         'image': request.form.get('image'),
         'recipe_name': request.form.get('recipe_name'),
         'time_to_make': request.form.get('time_to_make'),
         'ingredients': request.form.get('ingredients'),
         'method': request.form.get('method'),
-        'posted_by':request.form.get('posted_by')
+        'posted_by': request.form.get('posted_by')
     })
     return redirect(url_for('profile'))
 
