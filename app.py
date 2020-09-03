@@ -159,3 +159,9 @@ def delete_recipe(recipe_id):
 @app.route('/products')
 def products():
     return render_template("products.html")
+
+
+if __name__ == '__main__':
+    app.run(host=os.environ.get("IP"),
+            port=int(os.environ.get("PORT")),
+            debug=False)
