@@ -10,54 +10,38 @@
 				<h1 class="main-heading">Dinner</h1>
 			</div>
 		</div>
-        <!---------accordian for all the recipes and wiring up to the database collection for breakfasts-->
-		<ul class="collapsible">
+        <!---------accordian for all the recipes and wiring up to the database collection for Dinner-->
+			<ul class="collapsible popout">
 			{% for recipe in recipes %}
 			<li>
 				<div class="collapsible-header">
 					<div class="col s3">
 						<i class="material-icons">expand_more</i>
-						<!--------delete function to easily delete a recipe if it doesnt suit the needs of the webiste or if someone 
-                        has a nicer version -->
-						<a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}"
-							class="btn-floating btn-large waves-effect waves-light blue">Edit</a>
-					<a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1">Delete</a>
-
-						<!-- Modal Structure -->
-						<div id="modal1" class="modal">
-							<div class="modal-content">
-								<h4>Are you sure you want to Delete?</h4>
-							</div>
-							<div class="modal-footer">
-								<a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}"
-									class="modal-close waves-effect waves-green btn-flat">Yes</a>
-                                <a class="modal-close waves-effect waves-green btn-flat">No</a>
-							</div>
-						</div>
-						
 					</div>
-					<div class="recipe_header col s9">
-						<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>
-						{{recipe.time_to_make}}
-					</div>
+				<div class="recipe_header col s9">
+					<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>
+					{{recipe.time_to_make}}
 				</div>
-				<div class="collapsible-body">
-					<div>
-						<img src="{{recipe.image}}" alt="image"  class="responsive-img center materialboxed">
+				</div>
+	</div>
+	<div class="collapsible-body">
+		<div>
+			<img src="{{recipe.image}}" alt="image"  class="responsive-img center materialboxed">
      </div>
-						<br>
-                        <h3 class="headers">Ingredients</h3>
-						<p class="black-text">{{recipe.ingredients}}</p>
-						<br>
-						<br>
-						<h3 class="headers">Method</h3>
-						<p class="black-text">{{recipe.method}}</p>
-                        <br>
-						<br>
-						<h3 class="headers">Posted By</h3>
-						<p class="black-text">{{recipe.posted_by}}</p>
-					</div>
-			</li>
-			{% endfor %}
+			<br>
+			<h3 class="headers">Ingredients</h3>
+			<p class="black-text">{{recipe.ingredients}}</p>
+			<br>
+			<br>
+			<h3 class="headers">Method</h3>
+			<p class="black-text">{{recipe.method}}</p>
+			<br>
+			<br>
+			<h3 class="headers">Posted By</h3>
+			<p class="black-text">{{recipe.posted_by}}</p>
+		</div>
+		</li>
+		{% endfor %}
 		</ul>
-		{% endblock %}
+	</div>
+	{% endblock %}
