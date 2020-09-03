@@ -7,7 +7,7 @@
 	<title>DaddiesRecipes</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
 	</ul>
 
-	
+
 	<!------dropdown menu for smaller devices-->
 	<ul id="mobiledropdown" class="dropdown-content">
 		<li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
@@ -34,27 +34,44 @@
 		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
 	</ul>
 	<!-----Add a recipe drop down-->
-	
+
 	<nav>
 		<!------navbar with the triggers for drop down-->
 		<div class="nav-wrapper">
-			<a href="{{url_for('profile')}}" class="brand-logo">DaddiesRecipes</a>
+			<a href="{{url_for('home')}}" class="brand-logo">DaddiesRecipes</a>
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
-				<li><a class="dropdown"  data-target="dropdown">Find a
+				{% if 'username' in session %}
+                <li><a class="dropdown" data-target="dropdown">Find a
 						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
-				<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
-					<li><a href="{{url_for('products')}}">Products</a></li>
-				</ul>
+				<li><a href="{{url_for('profile')}}">Profile</a></li>
+				<li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
+				<li><a href="{{url_for('products')}}">Products</a></li>
+				<li><a href="">Log out</a></li>
+				{% else %}
+				<li><a class="dropdown" data-target="dropdown">Find a
+						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+				<li><a href="{{url_for('login_page')}}">Log in</a></li>
+				<li><a href="{{url_for('sign_up')}}">Register</a></li>
+				{% endif %}
+			</ul>
 		</div>
 	</nav>
 	<!-------sidenavbar element from materialize-->
 	<ul class="sidenav" id="mobile-demo">
-		<li><a class="dropdown" href="#!" data-target="mobiledropdown">Find a
-				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
-		<li><a href="{{url_for('add_recipe')}}">Add Your Favourite</a></li>
-		<li><a href="{{url_for('products')}}">Products</a></li>
+		{% if 'username' in session %}
+                <li><a class="dropdown" data-target="dropdown">Find a
+						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+				<li><a href="{{url_for('profile')}}">Profile</a></li>
+				<li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
+				<li><a href="{{url_for('products')}}">Products</a></li>
+				<li><a href="">Log out</a></li>
+				{% else %}
+				<li><a class="dropdown" data-target="dropdown">Find a
+						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
+				<li><a href="{{url_for('login_page')}}">Log in</a></li>
+				<li><a href="{{url_for('sign_up')}}">Register</a></li>
+				{% endif %}
 	</ul>
 
 	{% block content %}
@@ -64,17 +81,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-    $('.sidenav').sidenav();
-    $(".dropdown").dropdown();
-     $('.parallax').parallax();
-      $('.collapsible').collapsible();
-      $('select').formSelect();
-    $('.modal').modal();
-     $('.materialboxed').materialbox();
-  });
-	</script>
+	<script src="static/javaScript/script.js"></script>
 </body>
 
 </html>
