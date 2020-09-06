@@ -1,32 +1,41 @@
 {% extends 'base/base.html' %}
 {% block content %}
-
-<div class="container signupsignin">
-	<div class="row">
-		<div class="col s12">
-			<h1 class="main-heading">Please Log in to Accesss site</h1>
-		</div>
+<div class="parallax-container">
+	<div class="parallax"><img src="static/images/family.jpg" alt="breakfast"></div>
 	</div>
-	<form class="" action="{{ url_for('login') }}" method="POST">
-		<div class="row card signupsignin">
-			<div class="input-field col s12">
-				<input id="username" type="text" name="username" class="validate black-text">
-				<label for="username" class="black-text">User-Name</label>
+	<div class="container signupsignin">
+		<div class="row">
+			<div class="col s12">
+				<h1 class="main-heading">Please Log in to Accesss site</h1>
 			</div>
-			<div class="row">
+		</div>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		{% for message in messages %}
+		<p class="welcome-text">{{ message }}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
+		<form class="" action="{{ url_for('login') }}" method="POST">
+			<div class="row card signupsignin">
 				<div class="input-field col s12">
-					<input id="password" type="password" name="password" class="validate black-text">
-					<label for="password" class="black-text">Password</label>
+					<input id="username" type="text" name="username" class="validate black-text">
+					<label for="username" class="black-text">User-Name</label>
 				</div>
-			</div>
-			<div class="row signup-buttons">
-				<button class="btn waves-effect waves-light " type="submit" name="action" >Sign in 
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="password" type="password" name="password" class="validate black-text">
+						<label for="password" class="black-text">Password</label>
+					</div>
+				</div>
+				<div class="row signup-buttons">
+					<button class="btn waves-effect waves-light " type="submit" name="action" >Sign in 
     <i class="material-icons right">playlist_add</i>
   </button>
+				</div>
 			</div>
-		</div>
 
-	</form>
-	<a href="{{url_for('register')}}">Not a member please sign-up to access features</a>
-</div>
-{% endblock %}
+		</form>
+		<a href="{{url_for('register')}}">Not a member please sign-up to access features</a>
+	</div>
+	{% endblock %}

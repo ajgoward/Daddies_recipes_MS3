@@ -35,6 +35,11 @@ def login_page():
     return render_template("homepages/index.html")
 
 
+@app.route('/register_page')
+def register_page():
+    return render_template('homepages/signup.html')
+
+
 @app.route('/login', methods=['POST'])
 def login():
     users = mongo.db.users
@@ -51,7 +56,7 @@ def login():
     return render_template('homepages/index.html')
 
 
-@app.route('/register', methods=['POST', 'GET'])
+@app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
         exsiting_user = mongo.db.users.find_one(
@@ -67,8 +72,7 @@ def register():
         mongo.db.users.insert_one(register)
 
         session["user"] = request.form.get("username").lower()
-
-    return render_template('homepages/signup.html')
+        return redirect(url_for('profile'))
 
 
 @app.route('/log_out')
@@ -164,4 +168,4 @@ def products():
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)

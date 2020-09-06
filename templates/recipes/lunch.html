@@ -10,39 +10,37 @@
 				<h1 class="main-heading">Lunch</h1>
 			</div>
 		</div>
-       
-		<!---------accordian for all the recipes and wiring up to the database collection for Lunch-->
-			<ul class="collapsible popout">
+ 	<ul class="collapsible">
 			{% for recipe in recipes %}
 			<li>
 				<div class="collapsible-header">
 					<div class="col s3">
 						<i class="material-icons">expand_more</i>
 					</div>
-				<div class="recipe_header col s9">
-					<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>
-					{{recipe.time_to_make}}
+					<div class="recipe_header col s9">
+						<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>
+						{{recipe.time_to_make}}
+					</div>
 				</div>
-				</div>
-	</div>
-	<div class="collapsible-body">
-		<div>
-			<img src="{{recipe.image}}" alt="image"  class="responsive-img center materialboxed">
+				<div class="collapsible-body">
+					<div>
+						<img src="{{recipe.image}}" alt="image"  class="responsive-img center materialboxed">
      </div>
-			<br>
-			<h3 class="headers">Ingredients</h3>
-			<p class="black-text">{{recipe.ingredients}}</p>
-			<br>
-			<br>
-			<h3 class="headers">Method</h3>
-			<p class="black-text">{{recipe.method}}</p>
-			<br>
-			<br>
-			<h3 class="headers">Posted By</h3>
-			<p class="black-text">{{recipe.posted_by}}</p>
-		</div>
-		</li>
-		{% endfor %}
+						<br>
+						<h3 class="headers">Ingredients</h3>
+						<p class="black-text">{{recipe.ingredients}}</p>
+						<br>
+						<br>
+						<h3 class="headers">Method</h3>
+						<p class="black-text">{{recipe.method}}</p>
+						<br>
+						<br>
+						<h3 class="headers">Posted By</h3>
+						<p class="black-text">{{recipe.posted_by}}</p>
+					</div>
+			</li>
+			{% endfor %}
 		</ul>
 	</div>
-	{% endblock %}
+
+		{% endblock %}
