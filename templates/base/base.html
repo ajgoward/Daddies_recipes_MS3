@@ -43,14 +43,14 @@
 			<ul class="right hide-on-med-and-down">
             <li><a class="dropdown" data-target="dropdown">Find a
 				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
-				{% if 'username' in session %}
+				{% if session.user %}
 				<li><a href="{{url_for('profile')}}">Profile</a></li>
 				<li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
 				<li><a href="{{url_for('products')}}">Products</a></li>
 				<li><a href="{{url_for('log_out')}}">Log out</a></li>
 				{% else %}
-				<li><a href="{{url_for('login_page')}}">Log in</a></li>
-				<li><a href="{{url_for('register_page')}}">Register</a></li>
+				<li><a href="{{url_for('login')}}">Log in</a></li>
+				<li><a href="{{url_for('register')}}">Register</a></li>
 				{% endif %}
 			</ul>
 		</div>
@@ -59,14 +59,14 @@
 	<ul class="sidenav" id="mobile-demo">
     <li><a class="dropdown1" data-target="mobiledropdown">Find a
 				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
-		{% if 'username' in session %}
+		{% if session.user %}
 		<li><a href="{{url_for('profile')}}">Profile</a></li>
 		<li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
 		<li><a href="{{url_for('products')}}">Products</a></li>
 		<li><a href="{{url_for('log_out')}}">Log out</a></li>
 		{% else %}
-		<li><a href="{{url_for('login_page')}}">Log in</a></li>
-		<li><a href="{{url_for('register_page')}}">Register</a></li>
+		<li><a href="{{url_for('login')}}">Log in</a></li>
+		<li><a href="{{url_for('register')}}">Register</a></li>
 		{% endif %}
 	</ul>
 
@@ -79,7 +79,7 @@
 			<div class="row">
 				<div class="col l6 s12">
 					<h5 class="white-text">DaddiesRecipes</h5>
-					{% if 'username' in session %}
+					{% if session.user %}
 					<p class="grey-text text-lighten-4">Feel free to delete and edit Recipes!</p>
 				</div>
 				<div class="col l4 offset-l2 s12">
@@ -99,7 +99,7 @@
 				<div class="col l4 offset-l2 s12">
 					<h5 class="white-text">Links</h5>
 					<ul>
-						<li><a class="grey-text text-lighten-3" href="{{url_for('login_page')}}">Sign In</a></li>
+						<li><a class="grey-text text-lighten-3" href="{{url_for('login')}}">Sign In</a></li>
 						<li><a class="grey-text text-lighten-3" href="{{url_for('register')}}">Register</a></a></li>
 						<li><a class="grey-text text-lighten-3" href="{{url_for('breakfast')}}">Breakfast</a></li>
 						<li><a class="grey-text text-lighten-3" href="{{url_for('lunch')}}">Lunch</a></li>
