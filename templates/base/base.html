@@ -38,6 +38,7 @@
 	<nav>
 		<!------navbar with the triggers for drop down-->
 		<div class="nav-wrapper">
+        <!--------if else statement to show different links depending if the user is signed in-->
 			{% if session.user %}
 			<a href="{{url_for('profile')}}" class="brand-logo">DaddiesRecipes</a>
 			{% else %}
@@ -83,6 +84,7 @@
 			<div class="row">
 				<div class="col l6 s12">
 					<h5 class="white-text">DaddiesRecipes</h5>
+                <!--------if else statement to show different links depending if the user is signed in-->
 					{% if session.user %}
 					<p class="grey-text text-lighten-4">Feel free to delete and edit Recipes!</p>
 				</div>
