@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap");
 
 /* base.html styling */
+
 .nav-wrapper {
   background-color: #582b0c;
   font-family: "Pacifico", cursive;
-
+  padding-left: 5em;
+  padding-right: 5em;
 }
 
 .main-heading {
@@ -29,6 +31,10 @@
   .black-text {
     font-size: initial;
   }
+
+  .nav-wrapper{
+      padding: 0;
+  }
 }
 
 .recipe_header {
@@ -39,11 +45,14 @@
 
 .signupsignin {
   margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .signup-buttons {
   text-align: center;
 }
 
-
+footer{
+    padding-bottom: 20px;
+}
       

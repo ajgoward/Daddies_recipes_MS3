@@ -19,13 +19,13 @@
 		<form class="" action="{{ url_for('login') }}" method="POST">
 			<div class="row card signupsignin">
 				<div class="input-field col s12">
-					<input id="username" type="text" name="username" class="validate black-text" pattern="^[a-Za-Z0-9]{5,15}$" minlength="5" maxlength="15" required>
+					<input id="username" type="text" name="username" class="validate black-text"  required>
 					<label for="username" class="black-text">Please choose a User-Name</label>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
 						<input id="password" type="password" name="password" class="validate black-text"
-                                    pattern="^[a-Za-Z0-9]{5,15}$" minlength="5" maxlength="15" required>
+                                    required>
 						<label for="password" class="black-text">Please choose a Password</label>
 					</div>
 				</div>

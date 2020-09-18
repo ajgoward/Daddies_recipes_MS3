@@ -29,7 +29,11 @@
      </div>
 						<br>
 						<h3 class="headers">Ingredients</h3>
-						<p class="black-text">{{recipe.ingredients}}</p>
+                        <ul>
+                        {% for newline in recipe.ingredient.splitlines() %}
+						<li class="black-text">{{newline}}</li>
+                        {% endfor %}
+                        </ul>
 						<br>
 						<br>
 						<h3 class="headers">Method</h3>

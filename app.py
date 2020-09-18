@@ -87,6 +87,7 @@ def profile():
         return render_template(
             "homepages/profile.html", recipes=mongo.db.recipes.find())
 
+
 # recipe pages with function to find the recipes
 
 
@@ -132,8 +133,8 @@ def insert_recipe():
             "image": request.form.get("image"),
             "recipe_name": request.form.get("recipe_name"),
             "time_to_make": request.form.get("time_to_make"),
-            "ingredients": request.form.getlist("ingredients"),
-            "method": request.form.getlist("method"),
+            "ingredients": request.form.get("ingredients"),
+            "method": request.form.get("method"),
             "posted_by": session["user"]
         }
         mongo.db.recipes.insert_one(recipe)
@@ -156,8 +157,8 @@ def update_recipe(recipe_id):
         'image': request.form.get('image'),
         'recipe_name': request.form.get('recipe_name'),
         'time_to_make': request.form.get('time_to_make'),
-        'ingredients': request.form.getlist('ingredients'),
-        'method': request.form.getlist('method'),
+        'ingredients': request.form.get('ingredients'),
+        'method': request.form.get('method'),
         "posted_by": session["user"]
     })
     return redirect(url_for('profile'))
@@ -167,6 +168,14 @@ def update_recipe(recipe_id):
 def delete_recipe(recipe_id):
         mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
         return redirect(url_for('profile'))
+
+
+@app.route('/search', methods=['GET','POST'])
+def search():
+    query = request.form.get("query")
+    recipes = mongo.db.recipes.find({"$text": {"$search": query}})
+    return render_template(
+            "homepages/profile.html", recipes=recipes)
 
 
 @app.route('/products')

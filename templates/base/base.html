@@ -20,6 +20,7 @@
 		<li><a href="{{url_for('dinner')}}">Dinner</a></li>
 		<li class="divider"></li>
 		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
+        
 	</ul>
 
 
@@ -41,6 +42,7 @@
         <!--------if else statement to show different links depending if the user is signed in-->
 			{% if session.user %}
 			<a href="{{url_for('profile')}}" class="brand-logo">DaddiesRecipes</a>
+         
 			{% else %}
 			<a href="{{url_for('home')}}" class="brand-logo">DaddiesRecipes</a>
             {% endif %}
@@ -49,6 +51,7 @@
 				<li><a class="dropdown" data-target="dropdown">Find a
 						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
 				{% if session.user %}
+                
 				<li><a href="{{url_for('profile')}}">Profile</a></li>
 				<li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
 				<li><a href="{{url_for('products')}}">Products</a></li>
@@ -74,7 +77,6 @@
 		<li><a href="{{url_for('register')}}">Register</a></li>
 		{% endif %}
 	</ul>
-
 	{% block content %}
 
 
@@ -115,11 +117,6 @@
 
 					</ul>
 				</div>
-			</div>
-		</div>
-		<div class="footer-copyright">
-			<div class="container">
-				© 2020 Copyright
 			</div>
 		</div>
 	</footer>
