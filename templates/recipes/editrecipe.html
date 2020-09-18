@@ -12,47 +12,48 @@
 	<div class="container">
 		<!-------call to the function that adds once the submit button is clicked-->
 		<form class="col s12" action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST">
-			<div class="row input-box">
-
-				<label for="type">Choose a category:</label>
-
-				<select name="type" id="type">
-  <option value="breakfast">Breakfast</option>
-  <option value="lunch">Lunch</option>
-  <option value="dinner">Dinner</option>
-  <option value="dessert">Dessert</option>
-</select>
-			</div>
+	<div class="row">
+          <div class="input-field col s12">
+ 
+		 <select name="type" id="type">
+      <option value="" disabled selected>{{recipe.type}}</option>
+      <option  value="breakfast" >Breakfast</option>
+      <option value="lunch" name="type" >Lunch</option>
+      <option value="dinner" name="type" >Dinner</option>
+      <option value="dessert" name="type" >Dessert</option>
+    </select>
+    <label>Materialize Select</label>
+  </div></div>
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">http</i>
-					<textarea name="image" id="image" class="materialize-textarea"></textarea>
+					<textarea name="image" id="image" class="materialize-textarea" value="{{recipe.image}}"></textarea>
 					<label for="icon_telephone">Image URL</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
 					<i class="material-icons prefix">assignment</i>
-					<input id="recipe_name" name="recipe_name" type="text" class="validate">
+					<input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
 					<label for="icon_prefix">Recipe Name</label>
 				</div>
 				<div class="input-field col s6">
 					<i class="material-icons prefix">alarm</i>
-					<input id="time_to_make" name="time_to_make" type="text" class="validate">
+					<input id="time_to_make" name="time_to_make" type="text" class="validate" value="{{recipe.time_to_make}}">
 					<label for="icon_prefix">Time To Make</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">subject</i>
-					<textarea name="ingredients" id="ingredients" class="materialize-textarea"></textarea>
+					<textarea name="ingredients" id="ingredients" class="materialize-textarea">{{recipe.ingredients}}</textarea>
 					<label for="icon_telephone">Ingredients</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">menu</i>
-					<textarea name="method" id="method" class="materialize-textarea"></textarea>
+					<textarea name="method" id="method" class="materialize-textarea">{{recipe.method}}</textarea>
 					<label for="icon_telephone">Method</label>
 				</div>
 			</div>
@@ -63,6 +64,6 @@
 			</div>
 		</form>
 	</div>
-
+</div>
 
 	{% endblock %}

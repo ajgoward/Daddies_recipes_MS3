@@ -27,6 +27,7 @@
 						<i class="material-icons">expand_more</i>
 						<!--------delete function to easily delete a recipe if it doesnt suit the needs of the webiste or if someone 
                         has a nicer version -->
+                        {% if session.user|lower == recipe.posted_by|lower %}
 						<a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}"
 							class="btn-floating btn-large waves-effect waves-light blue">Edit</a>
 					<a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1">Delete</a>
@@ -42,7 +43,7 @@
                                 <a class="modal-close waves-effect waves-green btn-flat">No</a>
 							</div>
 						</div>
-						
+						{% endif %}
 					</div>
 					<div class="recipe_header col s9">
 						<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>

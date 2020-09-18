@@ -14,6 +14,7 @@
 	<div class="container">
 		<!-------call to the function that adds once the submit button is clicked-->
 		<form class="col s12" action="{{ url_for('insert_recipe' )}}" method="POST">
+        <div class="row">
           <div class="input-field col s12">
  
 		 <select name="type" id="type">
@@ -24,7 +25,7 @@
       <option value="dessert" name="type" >Dessert</option>
     </select>
     <label>Materialize Select</label>
-  </div>
+  </div></div>
 	<div class="row">
 		<div class="input-field col s12">
 			<i class="material-icons prefix">http</i>
