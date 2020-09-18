@@ -78,6 +78,7 @@
 							<!---after searching online i came across splitlines() method and deciede to try a for loop-->
 							{% for newline in recipe.ingredients.splitlines() %}
 							<li class="black-text">{{newline}}</li>
+                            <br>
 							{% endfor %}
 						</ul>
 						<br>
@@ -86,6 +87,7 @@
 						<ul>
 							{% for newline in recipe.method.splitlines() %}
 							<li class="black-text">{{newline}}</li>
+                            <br>
 							{% endfor %}
 						</ul>
 						<br>

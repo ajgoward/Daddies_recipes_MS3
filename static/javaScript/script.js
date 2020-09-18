@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('.parallax').parallax();
     $('.collapsible').collapsible();
     $('select').formSelect();
+    $('.selector').formSelect();
     $('.modal').modal();
     $('.materialboxed').materialbox();
     $(".dropdown1").dropdown();

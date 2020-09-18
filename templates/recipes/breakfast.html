@@ -30,14 +30,20 @@
 						<br>
 						<h3 class="headers">Ingredients</h3>
                         <ul>
-                        {% for newline in recipe.ingredient.splitlines() %}
+                        {% for newline in recipe.ingredients.splitlines() %}
 						<li class="black-text">{{newline}}</li>
+                        <br>
                         {% endfor %}
                         </ul>
 						<br>
 						<br>
 						<h3 class="headers">Method</h3>
-						<p class="black-text">{{recipe.method}}</p>
+						<ul>
+                        {% for newline in recipe.method.splitlines() %}
+						<li class="black-text">{{newline}}</li>
+                        <br>
+                        {% endfor %}
+                        </ul>
 						<br>
 						<br>
 						<h3 class="headers">Posted By</h3>

@@ -142,26 +142,26 @@ def insert_recipe():
         return redirect(url_for('profile'))
 
 
-@app.route('/edit_recipe/<recipe_id>')
+@app.route('/edit_recipe/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    if request.method == "POST":
+        recipe = {
+            "type": request.form.get("type"),
+            "image": request.form.get("image"),
+            "recipe_name": request.form.get("recipe_name"),
+            "time_to_make": request.form.get("time_to_make"),
+            "ingredients": request.form.get("ingredients"),
+            "method": request.form.get("method"),
+            "posted_by": session["user"]
+        }
+        mongo.db.recipes.update({'_id': ObjectId(recipe_id)}, recipe)
+        flash("Recipe Edited , Thank you!")
+        return redirect(url_for('profile'))
     the_recipe = mongo.db.recipes.find_one({
         "_id": ObjectId(recipe_id)})
     return render_template('recipes/editrecipe.html', recipe=the_recipe)
 
 
-@app.route('/update_recipe/<recipe_id>', methods=["POST"])
-def update_recipe(recipe_id):
-    recipe = mongo.db.recipes
-    recipe.update({'_id': ObjectId(recipe_id)}, {
-        'type': request.form.get('type'),
-        'image': request.form.get('image'),
-        'recipe_name': request.form.get('recipe_name'),
-        'time_to_make': request.form.get('time_to_make'),
-        'ingredients': request.form.get('ingredients'),
-        'method': request.form.get('method'),
-        "posted_by": session["user"]
-    })
-    return redirect(url_for('profile'))
 
 
 @app.route('/delete_recipe/<recipe_id>')
@@ -186,4 +186,4 @@ def products():
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
