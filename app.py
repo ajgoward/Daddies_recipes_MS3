@@ -175,7 +175,7 @@ def search():
     query = request.form.get("query")
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
     return render_template(
-            "homepages/profile.html", recipes=recipes)
+            "recipes/searchpage.html", recipes=recipes)
 
 
 @app.route('/products')
