@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="parallax-container">
+	<div class="parallax"><img src="static/images/lost1.jpg" alt="family-meal"></div>
+
+	</div>
+	<div class="container">
+		<h1 class="main-heading">Looks like you are lost please click this button to get back on track</h1>
+			{% if session.user %}
+            <a href="{{url_for('profile')}}" class="red btn-large text-shadow">Go Back</a>
+            {% else %}
+            <a href="{{url_for('home')}}" class="red btn-large text-shadow">Go Back</a>
+            {% endif %}
+
+	</div>
+	{% endblock %}
