@@ -1,5 +1,4 @@
 import os
-import bcrypt
 from flask import (
     Flask, render_template, redirect, request, url_for, session, flash)
 from flask_pymongo import PyMongo
@@ -128,9 +127,18 @@ def add_recipe():
 
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
-    recipes = mongo.db.recipes
-    recipes.insert_one(request.form.to_dict())
-    return redirect(url_for('profile'))
+        recipe = {
+            "type": request.form.get("type"),
+            "image": request.form.get("image"),
+            "recipe_name": request.form.get("recipe_name"),
+            "time_to_make": request.form.get("time_to_make"),
+            "ingredients": request.form.getlist("ingredients"),
+            "method": request.form.getlist("method"),
+            "posted_by": session["user"]
+        }
+        mongo.db.recipes.insert_one(recipe)
+        flash("Recipe Added , Thank you!")
+        return redirect(url_for('profile'))
 
 
 @app.route('/edit_recipe/<recipe_id>')
@@ -148,9 +156,9 @@ def update_recipe(recipe_id):
         'image': request.form.get('image'),
         'recipe_name': request.form.get('recipe_name'),
         'time_to_make': request.form.get('time_to_make'),
-        'ingredients': request.form.get('ingredients'),
-        'method': request.form.get('method'),
-        'posted_by': request.form.get('posted_by')
+        'ingredients': request.form.getlist('ingredients'),
+        'method': request.form.getlist('method'),
+        "posted_by": session["user"]
     })
     return redirect(url_for('profile'))
 
@@ -169,4 +177,4 @@ def products():
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)

@@ -10,6 +10,13 @@
 
 			<div class="col s12 welcome-text">
 				<p> Feel free To Add, Delete and Edit Recipes. But Please be respectful of other users recipes. </p>
+                {% with messages = get_flashed_messages() %}
+		{% if messages %}
+		{% for message in messages %}
+		<p class="welcome-text">{{ message }}</p>
+		{% endfor %}
+		{% endif %}
+		{% endwith %}
 			</div>
 		</div>
 		<ul class="collapsible z-depth-5">
