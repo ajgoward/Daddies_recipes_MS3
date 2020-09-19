@@ -8,6 +8,15 @@ Please find the application here: http://daddiesrecipes.herokuapp.com/home
 
 I made this app in another repo but i made the big mistake on what a developer can do and i commited my API key and SECRET key so to fix this i made a new REPO 
 
+## Table of Contents
+1. [**About**](#about)
+2. [**UX**](#ux)
+3. [**Existing Features**](#existing-features)
+4. [**Testing**](#testing)
+5. [**Deployment**](#deployment)
+6. [**Credits**](#credits)
+
+
 ## About
 This is a website that allows users to:
 

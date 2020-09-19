@@ -24,22 +24,27 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/home')
 def home():
+    """Renders home page"""
     return render_template("homepages/home.html")
 
 
 @app.route('/login', methods=['POST', "GET"])
 def login():
     if request.method == 'POST':
-        # check if username exsits in the database
+        """check if username exsits in the database"""
         existing_user = mongo.db.users.find_one(
             {'username': request.form.get('username').lower()})
-        # check if the password matches using check_hashword_pass
+
+        """check if the password matches using check_hashword_pass"""
+
         if existing_user:
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     return redirect(url_for('profile'))
-            # invalid login details
+
+                    """invalid login details"""
+
             else:
                 flash("Incorrect login details")
         else:
@@ -52,16 +57,20 @@ def login():
 @app.route('/register', methods=['POST', "GET"])
 def register():
     if request.method == 'POST':
-        # check if username exsits in the database
+        """check if username exsits in the database"""
         exsiting_user = mongo.db.users.find_one(
             {'username': request.form.get('username').lower()})
 
         if exsiting_user:
-            # if username exsits display message
+
+            """if username exsits display message"""
+
             flash('That username already exists!')
             return redirect(url_for('register'))
-        # if username doesnt exsit create dictionary and
-        # store the information within
+        """
+        if username doesnt exsit create dictionary
+        and store the information within
+        """
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
@@ -76,7 +85,7 @@ def register():
 
 @app.route('/log_out')
 def log_out():
-    # remove session cookies
+    """remove session cookies"""
     flash("log out successful")
     session.pop("user")
     return redirect(url_for('login'))
@@ -84,6 +93,7 @@ def log_out():
 
 @app.route('/profile')
 def profile():
+        """Renders Profile page and finds all recipes"""
         return render_template(
             "homepages/profile.html", recipes=mongo.db.recipes.find())
 
@@ -93,6 +103,7 @@ def profile():
 
 @app.route('/breakfast')
 def breakfast():
+    """Renders breakfast recipe page and finds all breakfast"""
     return render_template(
         "recipes/breakfast.html", recipes=mongo.db.recipes.find(
             {"type": "breakfast"}))
@@ -100,12 +111,14 @@ def breakfast():
 
 @app.route('/lunch')
 def lunch():
+    """Renders lunch recipe page and finds all lunch"""
     return render_template("recipes/lunch.html", recipes=mongo.db.recipes.find(
         {"type": "lunch"}))
 
 
 @app.route('/dinner')
 def dinner():
+    """Renders dinner recipe page and finds all dinner"""
     return render_template(
         "recipes/dinner.html", recipes=mongo.db.recipes.find(
             {"type": "dinner"}))
@@ -113,6 +126,7 @@ def dinner():
 
 @app.route('/dessert')
 def dessert():
+    """Renders dessert recipe page and finds all desserts"""
     return render_template(
         "recipes/dessert.html", recipes=mongo.db.recipes.find(
             {"type": "dessert"}))
@@ -123,11 +137,13 @@ def dessert():
 
 @app.route('/add_recipe')
 def add_recipe():
+    """Renders the add recipe page"""
     return render_template("recipes/addrecipe.html")
 
 
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
+        """Create the recipe in the database."""
         recipe = {
             "type": request.form.get("type"),
             "image": request.form.get("image"),
@@ -144,6 +160,8 @@ def insert_recipe():
 
 @app.route('/edit_recipe/<recipe_id>', methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    """request the information of the recipe from the database
+     and display it for editing and then updating the database"""
     if request.method == "POST":
         recipe = {
             "type": request.form.get("type"),
@@ -162,30 +180,28 @@ def edit_recipe(recipe_id):
     return render_template('recipes/editrecipe.html', recipe=the_recipe)
 
 
-
-
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
+        """Remove the recipe from the database"""
         mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
         return redirect(url_for('profile'))
 
 
-@app.route('/search', methods=['GET','POST'])
+@app.route('/search',  methods=['GET', 'POST'])
 def search():
+    """search the database using the query key i have set see readme.md"""
     query = request.form.get("query")
     recipes = mongo.db.recipes.find({"$text": {"$search": query}})
     return render_template(
             "recipes/searchpage.html", recipes=recipes)
 
 
-@app.route('/products')
-def products():
-    return render_template("products.html")
-
+# 404 event handler i recieved this from the flask documentation
 
 
 @app.errorhandler(404)
 def page_not_found(e):
+    """if the page is not found show this page"""
     return render_template('homepages/404.html'), 404
 
 
