@@ -26,7 +26,7 @@ website that shares my recipes and allows other people to share their family fav
 
 ### Wireframes
 
-Please view the wireframes [here](Wireframes/daddiesrecipes.pdf)
+Please view the wireframes [here](Wireframes/daddies.pdf)
 
 ### This website is for:
 
