@@ -28,8 +28,7 @@ This is a website that allows users to:
 
 * Delete Recipes
 
-As a Dad and an ex chef I am always cooking for my family in a nutritious way, so I decided to make a
-website that shares my recipes and allows other people to share their family favourites.
+As a Dad and an ex-chef, I am always cooking for my family in a nutritious way, so I decided to make a website that shares my recipes and allows other people to share their family favorites.
 
 ## UX
 
@@ -40,13 +39,20 @@ Please view the wireframes [here](Wireframes/daddies.pdf)
 ### This website is for:
 
 * Families 
+* Careers
+* Grandparents
+* Cooks
+* Chefs
 
 ### What they want to achieve:
 
-* sign up to use the website 
+* sign up to use the create edit and delete functions on the website 
 
 * Learn What the website is about 
+
 * Look for recipes in a clear format i.e. in clear sections breakfast, lunch, dinner, dessert
+
+* Search for recipes by typing a query into a search bar by ingredient or title
 
 * Add their family favourites 
 
@@ -63,13 +69,17 @@ Please view the wireframes [here](Wireframes/daddies.pdf)
 
 *	There will be different pages so a user can jump from to the most relevant information 
 
+*   There will be a search bar to search for recipes
+
+* there will be a profile page where the user can only edit and delete there own recipes
+
 *	there will be clear buttons for Deleting and Editing Recipes
 
 *   There will be a clear form to add/edit recipes with sections for image URL, recipe name, time to make the recipe, ingredients, method 
 
-*   there will be a sign in page, so all Recipes are secure 
+*   there will be a sign in page so they can access the said functions 
 
-*  There will be a products page to promote equipment a user may need 
+
 
 
 ## Existing Features 
@@ -77,11 +87,13 @@ Please view the wireframes [here](Wireframes/daddies.pdf)
 
 *	Subheadings-this allows users find the information they need 
 
-*	Sign in / sign up page – this allows the user to sign up to use features and view the website 
+*	Sign in / sign up page – this allows the user to sign up to use features 
+* A search bar - so the user can find recipes
 *	An accordion style recipe page – so the user can click on there chosen recipe and can view it
 *	A delete button – which is clear and red so a user can click and delete the recipe 
 *	An edit button- this takes the user to the edit form which they can fill out and edit the recipe and is taken back to the recipe page once complete 
-*	A add a recipe navigation where the user selects whether they want to add to breakfast, lunch, dinner or dessert and will be taken to the respective form to add a recipe and when done it will take the user to the respective recipe page
+*	A add a recipe page so the user can add there recipe
+*   A 404 handler so the user doesnt have to use the back buttons on the browser
 ### Features I would like
 
 *   ability to add an image to the database from the user’s files e.g. a jpeg 
@@ -89,9 +101,34 @@ Please view the wireframes [here](Wireframes/daddies.pdf)
 *	HTML5- standard language of a webpage 
 *	CSS3- for customised styling 
 *	jQuery – for styling options like navbar, the images, accordion 
+*   Flask- this was used for template inheritance and to viiew the data in a clear and styled manner
 *   Python3 – for loading the html pages, accessing the mongo dB database and displaying 
 *   mongo dB – this is the database system that I used to store all data and then display it on the website 
 *	Materialize – I used this for styling of the webpage and to make it more responsive
+
+## Database Schema
+
+### Users 
+
+Key | Value
+------------ | -------------
+_id | ObjectID
+user | string
+password | string
+
+### Recipes
+
+Key | Value
+------------ | -------------
+_id | ObjectID
+type | string
+image | string
+recipe_name | string
+time_to_make | string
+Ingredients | string
+method | string 
+posted_by | string ( retreved by user in session)
+
 
 ## Testing 
 I viewed the webpage in the browser and used google developer tools to make sure the project looks good, works on all devices and if any bugs appeared when I
@@ -109,17 +146,43 @@ The things that are marking this app down are:
 
 
 I tested each user story as follows:
-*	Sign up to use the website – Go to the website, click sign up, redirected to sign up page enter chosen username and password, redirected to sign in to enter the chosen username and password 
- 
-* Learn What the website is about- Sign in using username and password redirected to home about page        
+
+* Learn What the website is about- Go to home page
+
+![homepage](static/screenshots/homepage.png)
+
+
+*	Sign up to use the create edit and delete functions on the website  – Go to the website, click sign up, redirected to sign up page enter chosen username and password, redirected to sign in to enter the chosen username and password 
+
+ ![signup](static/screenshots/signup.png)
+  ![signin](static/screenshots/signin.png)
+
+*  Add their family favourites- go to homepage, click the add a recipe section on navbar, dropdown appears with sections for breakfast, lunch, dinner. Select your choice, add a recipe page loads with a form to add an image, title, time to make, ingredients and method
+
+  ![add](static/screenshots/add.png)
+
+*	Edit Recipes if they know a better version or make a mistake- Go to profile page see the recipes with a clear edit button and when clicked redirected to a form to edit said recipe 
+  ![edit](static/screenshots/edit.png)
+    ![edit2](static/screenshots/edit2.png)
+
+*	Delete a Recipe if there are duplicates- Go to profile click delete  a modal pops up to confirm and then the profile page reloads with the recipe deleted
+
+  ![delete](static/screenshots/delete.png)
+      
 *	look for recipes in a clear format i.e. in clear sections breakfast, lunch, dinner, dessert – go to homepage, click the find a recipe section on navbar, dropdown appears with sections for breakfast, lunch, dinner 
 
-*	Add their family favourites- go to homepage, click the add a recipe section on navbar, dropdown appears with sections for breakfast, lunch, dinner. Select your choice, add a recipe page loads with a form to add an image, title, time to make, ingredients and method
+  ![find](static/screenshots/find.png)
+
+*	 Search for recipes by typing a query into a search bar by ingredient or title - go to either the home or profile page and find the search bar , once typed in press serach and it will take you tto a serach page
 
 
-*	Edit Recipes if they know a better version or make a mistake- Go to ‘find a recipe’ page see the recipes with a clear edit button and when clicked redirected to a form to edit said recipe 
+  ![search](static/screenshots/search.png)
 
-*	Delete a Recipe if there are duplicates- Go to ‘find a recipe’ page see the recipes with a clear delete button and when clicked redirected to the same page with the recipe deleted 
+  
+  ![results](static/screenshots/searchresults.png)
+
+
+
 *	Do in a time efficient way – everything is set out in headings and subheadings so the user can jump to necessarily information 
 
 
@@ -137,7 +200,7 @@ I tested each user story as follows:
 * when I sent this for users to test they couldn’t sign up to the webpage , as I fixed this issue I realised I had both GET and POST actions on the form to fix this I removed the GET action and this fixed the issue 
 ### Validation
 
-I also validated my code on W3C Mark-up Validator
+I also validated my code on W3C Mark-up Validator and pep8 for python validation 
 
 ## Deployment 
 
@@ -173,7 +236,7 @@ When I deployed my project, I sent it to friends and family for feedback as furt
 
 ## Credits 
 ### Code 
-*	Code institute for the knowledge and use of there code practices -https://courses.codeinstitute.net/login
+*	Code institute for the knowledge and use of there code practices and tutor support -https://courses.codeinstitute.net/login
 
 *	Materialize- this helped with the styling and functionality of the site 
 *    python tester – validation of my app.py - https://extendsclass.com/python-tester.html
@@ -184,7 +247,7 @@ When I deployed my project, I sent it to friends and family for feedback as furt
 
 ### Media 
 * lighthouse testing - https://web.dev/measure/?gclid=Cj0KCQjwuJz3BRDTARIsAMg-HxU3cY1mcAGoQ3I6EiLsIYgKsC9VLXVIW1FDcZM3Vjuj-Dkncprhz38aAh-bEALw_wcB
-* I received my images from USPLASH which is a free image downloader - https://unsplash.com/
+* I received my images from USPLASH which is a free image downloader and google image search - https://unsplash.com/
 * Responsive image for README - http://techsini.com/multi-mockup/index.php
 
 * Colors – I used this website for the navbar it is a website you can get the html code of an image https://html-color-codes.info/colors-from-image/.
