@@ -1,12 +1,5 @@
-{% extends 'base/base.html' %}
-{% block content %}
-
+<h3>Add Task</h3>
 <div class="container">
-<div class="row">
-		<div class="col s12">
-			<h1 class="main-heading">Please Feel Free To Add Your Family Favourites!</h1>
-		</div>
-	</div>
    <form class="col s12" action="{{ url_for('insert_recipe' )}}" method="POST">
       <div class="row">
         <div class="input-field col s12">
@@ -86,5 +79,3 @@
     </form>
 
   </div>
-
-{% endblock %}
