@@ -32,6 +32,21 @@
   font-family: "Montserrat", cursive;
 }
 
+.recipe-text{
+    text-align: center;
+}
+
+.recipes{
+    padding-left: 30px;
+  
+}
+
+.headers{
+    text-align: center;
+  font-family: "Pacifico", cursive;
+  font-size: 30px;
+}
+
 @media only screen and (max-width: 768px) {
   .black-text {
     font-size: initial;
@@ -42,11 +57,6 @@
   }
 }
 
-.recipe_header {
-  font-size: 30px;
-  font-family: "Montserrat", cursive;
-  padding-left: 30px;
-}
 
 .signupsignin {
   margin-top: 40px;
