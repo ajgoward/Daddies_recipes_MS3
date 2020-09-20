@@ -18,9 +18,9 @@
 					<div class="col s3">
 						<i class="material-icons">expand_more</i>
 					</div>
-					<div class="recipe_header col s9">
-						<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>
-						{{recipe.time_to_make}}
+					<div class=" col s9">
+				<p class="black-text">	<strong>Recipe:</strong>   {{recipe.recipe_name}} - <br> <strong>Time to make:</strong> 
+						   {{recipe.time_to_make}}</p>
 					</div>
 				</div>
 				<div class="collapsible-body">
@@ -48,6 +48,10 @@
 						<br>
 						<h3 class="headers">Posted By</h3>
 						<p class="black-text">{{recipe.posted_by}}</p>
+                        <br>
+						<br>
+						<h3 class="headers">Credit</h3>
+						<p class="black-text">{{recipe.credit}}</p>
 					</div>
 			</li>
 			{% endfor %}

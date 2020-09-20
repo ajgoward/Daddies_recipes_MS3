@@ -1,63 +1,74 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<!-------Header using parallax found on materiallize-->
-<div class="parallax-container">
-	<div class="parallax"><img src="static/images/family.jpg" alt="family-meal"></div>
-
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col s12">
-				<h1 class="main-heading">Search Results</h1>
-			</div>
-            	{% if session.user %}
-            <a href="{{url_for('profile')}}" class="red btn-large text-shadow">Go Back</a>
-            {% else %}
-            <a href="{{url_for('home')}}" class="red btn-large text-shadow">Go Back</a>
-            {% endif %}
+<div class="container">
+	<div class="row">
+		<div class="col s12">
+			<h1 class="main-heading">Search Results</h1>
 		</div>
-		<ul class="collapsible z-depth-5">
-        <!-----for statement to find the recipes-->
-			{% for recipe in recipes %}
-			<li>
-				<div class="collapsible-header">
-					<div class="col s3">
-						<i class="material-icons">expand_more</i>
-					</div>
-					<div class="recipe_header col s9">
-						<strong>Recipe:</strong> {{recipe.recipe_name}} - <strong>Time to make:</strong>
-						{{recipe.time_to_make}}
-					</div>
+	</div>
+	<div class="row card-pannel ">
+		<form method="POST" action="{{ url_for('search') }}" class="col s12">
+			<div class="row valign-wrapper center-align">
+				<div class="input-field col s12 m8">
+					<input type="text" id="query" name="query" class="validate"  minlength="3" required>
+					<label for="query">Search Recipes</label>
 				</div>
-				<div class="collapsible-body">
-					<div>
-						<img src="{{recipe.image}}" alt="image"  class="responsive-img center materialboxed">
+				<div class="col s12 m4">
+					<a href="{{url_for('home')}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons center">loop
+</i></a>
+					<button type="submit" class="btn-floating btn-large waves-effect waves-light blue">
+    <i class="material-icons center">search</i> 
+    </button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<ul class="collapsible z-depth-5">
+		<!-----for statement to find the recipes-->
+		{% for recipe in recipes %}
+		<li>
+			<div class="collapsible-header">
+				<div class="col s3">
+					<i class="material-icons">expand_more</i>
+				</div>
+				<div class=" col s9">
+					<p class="black-text"> <strong>Recipe:</strong> {{recipe.recipe_name}} - <br>
+						<strong>Time to make:</strong>
+						{{recipe.time_to_make}}</p>
+				</div>
+			</div>
+			<div class="collapsible-body">
+				<div>
+					<img src="{{recipe.image}}" alt="image"  class="responsive-img center materialboxed">
      </div>
-						<br>
-						<h3 class="headers">Ingredients</h3>
-                        <ul>
-                        {% for newline in recipe.ingredients.splitlines() %}
+					<br>
+					<h3 class="headers">Ingredients</h3>
+					<ul>
+						{% for newline in recipe.ingredients.splitlines() %}
 						<li class="black-text">{{newline}}</li>
-                        <br>
+						<br>
                         {% endfor %}
                         </ul>
 						<br>
 						<br>
 						<h3 class="headers">Method</h3>
 						<ul>
-                        {% for newline in recipe.method.splitlines() %}
-						<li class="black-text">{{newline}}</li>
-                        <br>
+							{% for newline in recipe.method.splitlines() %}
+							<li class="black-text">{{newline}}</li>
+							<br>
                         {% endfor %}
                         </ul>
-						<br>
-						<br>
-						<h3 class="headers">Posted By</h3>
-						<p class="black-text">{{recipe.posted_by}}</p>
-					</div>
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
-
-		{% endblock %}
+							<br>
+							<br>
+							<h3 class="headers">Posted By</h3>
+							<p class="black-text">{{recipe.posted_by}}</p>
+							<br>
+							<br>
+							<h3 class="headers">Credit</h3>
+							<p class="black-text">{{recipe.credit}}</p>
+				</div>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}

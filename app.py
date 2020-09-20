@@ -151,7 +151,8 @@ def insert_recipe():
             "time_to_make": request.form.get("time_to_make"),
             "ingredients": request.form.get("ingredients"),
             "method": request.form.get("method"),
-            "posted_by": session["user"]
+            "posted_by": session["user"],
+            "credit": request.form.get("credit")
         }
         mongo.db.recipes.insert_one(recipe)
         flash("Recipe Added , Thank you!")
@@ -170,7 +171,8 @@ def edit_recipe(recipe_id):
             "time_to_make": request.form.get("time_to_make"),
             "ingredients": request.form.get("ingredients"),
             "method": request.form.get("method"),
-            "posted_by": session["user"]
+            "posted_by": session["user"],
+            "credit": request.form.get("credit")
         }
         mongo.db.recipes.update({'_id': ObjectId(recipe_id)}, recipe)
         flash("Recipe Edited , Thank you!")
@@ -208,4 +210,4 @@ def page_not_found(e):
 if __name__ == '__main__':
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
