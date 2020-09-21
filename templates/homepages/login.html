@@ -9,6 +9,7 @@
 				<h1 class="main-heading">Please Log in to Accesss site</h1>
 			</div>
 		</div>
+		<!--I recieved this from the flask documentation https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/-->
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
 		{% for message in messages %}

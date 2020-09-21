@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<!-------dropdown menu for larger devices as jquery wouldnt recognise the two-->
+	<!--dropdown menu for larger devices as jquery wouldnt recognise the two-->
 	<ul id="dropdown" class="dropdown-content">
 		<li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
 		<li class="divider"></li>
@@ -20,11 +20,11 @@
 		<li><a href="{{url_for('dinner')}}">Dinner</a></li>
 		<li class="divider"></li>
 		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
-        
+
 	</ul>
 
 
-	<!------dropdown menu for smaller devices-->
+	<!--dropdown menu for smaller devices-->
 	<ul id="mobiledropdown" class="dropdown-content">
 		<li><a href="{{url_for('breakfast')}}">Breakfast</a></li>
 		<li class="divider"></li>
@@ -34,24 +34,24 @@
 		<li class="divider"></li>
 		<li><a href="{{url_for('dessert')}}">Dessert</a></li>
 	</ul>
-	<!-----Add a recipe drop down-->
+	<!--Add a recipe drop down-->
 
 	<nav>
-		<!------navbar with the triggers for drop down-->
+		<!---navbar with the triggers for drop down-->
 		<div class="nav-wrapper">
-        <!--------if else statement to show different links depending if the user is signed in-->
+			<!--if else statement to show different links depending if the user is signed in-->
 			{% if session.user %}
 			<a href="{{url_for('profile')}}" class="brand-logo">DaddiesRecipes</a>
-         
+
 			{% else %}
 			<a href="{{url_for('home')}}" class="brand-logo">DaddiesRecipes</a>
-            {% endif %}
+			{% endif %}
 			<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
 				<li><a class="dropdown" data-target="dropdown">Find a
 						Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
 				{% if session.user %}
-                
+
 				<li><a href="{{url_for('profile')}}">Profile</a></li>
 				<li><a href="{{url_for('add_recipe')}}"> Add Your Favourite</a></li>
 				<li><a href="{{url_for('log_out')}}">Log out</a></li>
@@ -62,7 +62,7 @@
 			</ul>
 		</div>
 	</nav>
-	<!-------sidenavbar element from materialize-->
+	<!---sidenavbar element from materialize-->
 	<ul class="sidenav" id="mobile-demo">
 		<li><a class="dropdown1" data-target="mobiledropdown">Find a
 				Recipe<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -84,7 +84,7 @@
 			<div class="row footer-text">
 				<div class="col l6 s12">
 					<h5 class="white-text">DaddiesRecipes</h5>
-                <!--------if else statement to show different links depending if the user is signed in-->
+					<!--if else statement to show different links depending if the user is signed in-->
 					{% if session.user %}
 					<p class="grey-text text-lighten-4">Feel free to delete and edit Recipes!</p>
 				</div>

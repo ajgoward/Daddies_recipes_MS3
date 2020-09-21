@@ -56,7 +56,8 @@
 						<br>
 						<h3 class="headers">Ingredients</h3>
 						<ul>
-							<!---after searching online i came across splitlines() method and deciede to try a for loop-->
+							<!---after searching online i came across splitlines() https://www.w3schools.com/python/ref_string_splitlines.asp 
+                            method and deciede to try a for loop-->
 							{% for newline in recipe.ingredients.splitlines() %}
 							<li class="black-text recipe-text">{{newline}}</li>
 							<br>

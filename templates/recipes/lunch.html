@@ -19,12 +19,12 @@
 						<i class="material-icons">expand_more</i>
 						<!--------delete function to easily delete a recipe if it doesnt suit the needs of the webiste or if someone 
                         has a nicer version -->
-                        <br>
+						<br>
 						{% if session.user|lower == recipe.posted_by|lower %}
 						<a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}"
 							class="btn-floating btn-large waves-effect waves-light blue">Edit</a>
-                        <br>
-                        <br>
+						<br>
+						<br>
 						<a class="btn-floating btn-large waves-effect waves-light red modal-trigger"
 							href="#modal1">Delete</a>
 
@@ -42,21 +42,22 @@
 						</div>
 						{% endif %}
 					</div>
-                   
+
 					<div class=" col s8">
-					<p class="headers recipes"> {{recipe.recipe_name}} </p>
-                    <p class="black-text recipes"><i class="material-icons">alarm</i>{{recipe.time_to_make}}</p>
+						<p class="headers recipes"> {{recipe.recipe_name}} </p>
+						<p class="black-text recipes"><i class="material-icons">alarm</i>{{recipe.time_to_make}}</p>
 					</div>
 				</div>
 				<div class="collapsible-body">
 					<div class="row">
-                    <div class="col s12 image-container">
-						<img src="{{recipe.image}}" alt="image"  class="responsive-img  materialboxed"></div>
-     </div>
+						<div class="col s12 image-container">
+							<img src="{{recipe.image}}" alt="image"  class="responsive-img  materialboxed"></div>
+						</div>
 						<br>
 						<h3 class="headers">Ingredients</h3>
 						<ul>
-							<!---after searching online i came across splitlines() method and deciede to try a for loop-->
+							<!---after searching online i came across splitlines() https://www.w3schools.com/python/ref_string_splitlines.asp 
+                            method and deciede to try a for loop-->
 							{% for newline in recipe.ingredients.splitlines() %}
 							<li class="black-text recipe-text">{{newline}}</li>
 							<br>

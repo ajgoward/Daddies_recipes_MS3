@@ -132,7 +132,7 @@ def dessert():
             {"type": "dessert"}))
 
 
-# CRUD functionality for the Breakfast collection #
+# CRUD functionality for the recipe collection #
 
 
 @app.route('/add_recipe')
@@ -187,6 +187,9 @@ def delete_recipe(recipe_id):
         """Remove the recipe from the database"""
         mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
         return redirect(url_for('profile'))
+
+
+# another function helped by tutor support
 
 
 @app.route('/search',  methods=['GET', 'POST'])
